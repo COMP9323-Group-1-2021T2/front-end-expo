@@ -18,10 +18,15 @@ export const NewNavbar = ({ navigation }) => {
 
   const handleTalkToOurAssistant = () => {};
 
+  const handleOnTitlePress = () => {
+    setParentSelected("");
+    navigation.navigate("Home");
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.titleContainer}>
-        <Headline>myWellbeing</Headline>
+        <Headline onPress={handleOnTitlePress}>myWellbeing</Headline>
       </View>
       <View style={styles.menus}>
         {parentIds.map((pId) => {
