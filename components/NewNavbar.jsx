@@ -28,7 +28,7 @@ export const NewNavbar = () => {
   return (
     <View style={styles.container}>
       <View style={styles.titleContainer}>
-        <Headline onPress={handleOnTitlePress}>myWellbeing</Headline>
+        <Title style={styles.title} onPress={handleOnTitlePress}>myWellbeing</Title>
       </View>
       <View style={styles.menus}>
         {parentIds.map((pId) => {
@@ -39,9 +39,9 @@ export const NewNavbar = () => {
                 visible={parentSelected === pId}
                 onDismiss={() => setParentSelected("")}
                 anchor={
-                  <Title style={styles.menuTitle} onPress={() => setParentSelected(pId)}>
+                  <Headline style={styles.menuTitle} onPress={() => setParentSelected(pId)}>
                     {categoriesMap[pId].name}
-                  </Title>
+                  </Headline>
                 }
               >
                 {categoriesMap[pId].subCategories.map((subCategory) => (
@@ -73,8 +73,9 @@ export const NewNavbar = () => {
           <Menu.Item
             onPress={handleTalkToOurAssistant}
             title="Talk to our chat assistant"
+            icon="chat"
           />
-          <Menu.Item onPress={() => {}} title="Lifeline" />
+          <Menu.Item icon="phone" onPress={() => {}} title="Lifeline" />
         </Menu>
       </View>
     </View>
@@ -88,6 +89,9 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     backgroundColor: "white",
   },
+  title: {
+    fontSize: 30,
+  },
   menus: {
     display: "flex",
     flexDirection: "row",
@@ -100,9 +104,11 @@ const styles = StyleSheet.create({
     marginTop: 50,
   },
   titleContainer: {
-    padding: 10,
+    paddingVertical: 10,
+    paddingHorizontal: 20,
     borderRightWidth: 2,
     borderRightColor: "black",
+    marginRight: 20,
   },
   menuItem: {
     padding: 10,
