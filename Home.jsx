@@ -1,7 +1,6 @@
 import React from 'react';
 import {StyleSheet, Text, View, Pressable } from 'react-native';
 import { Button, Menu, Divider, Provider } from 'react-native-paper';
-import { NativeRouter, Route, Link } from "react-router-native";
 import Navbar from './components/Navbar';
 
 export default function Home() {
