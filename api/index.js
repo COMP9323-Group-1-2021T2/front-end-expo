@@ -31,7 +31,7 @@ export const getCategoryInfo = async (categoryId) => {
     throw new Error(`failed to fetch category info for category id: ${categoryId}`);
   }
 
-  return jsonData.data;
+  return jsonData.data.info;
 }
 
 export const getCategoryArticles = async (categoryId) => {

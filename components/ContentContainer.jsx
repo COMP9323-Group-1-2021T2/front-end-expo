@@ -65,6 +65,7 @@ const styles = StyleSheet.create({
   tabsContainer: {
     display: "flex",
     flexDirection: "row",
+    marginBottom: 50,
   },
 
   tabContainer: {
@@ -75,5 +76,7 @@ const styles = StyleSheet.create({
     color: theme.colors.primary,
   },
 
-  contentContainer: {},
+  contentContainer: {
+    width: "90%",
+  },
 });
