@@ -2,10 +2,13 @@ import React, { useState, useEffect } from "react";
 import { getCategories } from "../api";
 
 export const CategoriesContext = React.createContext({
+  isCategoriesLoaded: false,
   categories: [],
+  categoriesMap: {},
 });
 
 export const CategoriesContainer = ({ children }) => {
+  const [isCategoriesLoaded, setIsCategoriesLoaded] = useState(false);
   const [categories, setCategories] = useState([]);
   const [categoriesMap, setCategoriesMap] = useState({});
 
@@ -40,8 +43,16 @@ export const CategoriesContainer = ({ children }) => {
     setCategoriesMap(cm);
   }, [categories]);
 
+  useEffect(() => {
+    if (categoriesMap !== {}) {
+      setIsCategoriesLoaded(true);
+    }
+  }, [categoriesMap]);
+
   const contextValue = {
+    isCategoriesLoaded,
     categories,
+    categoriesMap,
   }
 
 
