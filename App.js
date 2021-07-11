@@ -8,6 +8,9 @@ import { theme } from "./core/theme";
 const config = {
   screens: {
     Home: "",
+    Info: ":categoryId",
+    Articles: ":categoryId/articles",
+    Videos: ":categoryId/videos",
   },
 };
 

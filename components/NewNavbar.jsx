@@ -4,12 +4,17 @@ import { Headline, Menu, Divider, Title } from "react-native-paper";
 import { theme } from "../core/theme";
 import { CategoriesContext } from "../contexts/CategoriesContext";
 
-export const NewNavbar = () => {
+export const NewNavbar = ({ navigation }) => {
   const { categoriesMap } = useContext(CategoriesContext);
   const parentIds = Object.keys(categoriesMap);
   const [parentSelected, setParentSelected] = useState("");
 
-  const handleCategoryOnSelect = (categoryId) => {};
+  const handleCategoryOnSelect = (categoryId) => {
+    setParentSelected("");
+    navigation.push("Info", {
+      categoryId,
+    });
+  };
 
   const handleTalkToOurAssistant = () => {};
 
@@ -35,7 +40,7 @@ export const NewNavbar = () => {
                 {categoriesMap[pId].subCategories.map((subCategory) => (
                   <Menu.Item
                     key={subCategory.id}
-                    onPress={() => {}}
+                    onPress={() => handleCategoryOnSelect(subCategory.id)}
                     title={subCategory.name}
                   />
                 ))}
@@ -50,7 +55,10 @@ export const NewNavbar = () => {
           visible={parentSelected === "get-help"}
           onDismiss={() => setParentSelected("")}
           anchor={
-            <Title style={styles.getHelpText} onPress={() => setParentSelected("get-help")}>
+            <Title
+              style={styles.getHelpText}
+              onPress={() => setParentSelected("get-help")}
+            >
               Get Help Now
             </Title>
           }

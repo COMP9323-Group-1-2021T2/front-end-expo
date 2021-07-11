@@ -2,11 +2,11 @@ import React from "react";
 import { View, Text } from "react-native";
 import { NewNavbar } from "../components/NewNavbar";
 
-export const HomeScreen = ({ navigation }) => {
+export const ArticlesScreen = () => {
   return (
     <View>
-      <NewNavbar navigation={navigation} />
-      <Text>Home</Text>
+      <NewNavbar />
+      <Text>Articles Screen</Text>
     </View>
   );
 };
