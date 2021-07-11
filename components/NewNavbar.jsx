@@ -29,7 +29,9 @@ export const NewNavbar = () => {
 
   let styles = largeStyles;
 
-  if (isMobileScreen()) {
+  const isMobile = isMobileScreen()
+
+  if (isMobile) {
     styles = { ...styles, ...mobileStyles };
   }
 
@@ -40,6 +42,7 @@ export const NewNavbar = () => {
           icon="menu"
           color="black"
           size={21}
+          style={[isMobile ? {} : { display: "none" }]}
           onPress={() => setIsOpen(!isOpen)}
         />
         <Title style={styles.title} onPress={handleOnTitlePress}>
