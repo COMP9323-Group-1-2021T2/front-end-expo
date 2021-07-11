@@ -11,7 +11,7 @@ export const NewNavbar = ({ navigation }) => {
 
   const handleCategoryOnSelect = (categoryId) => {
     setParentSelected("");
-    navigation.push("Info", {
+    navigation.navigate("Info", {
       categoryId,
     });
   };

@@ -5,7 +5,7 @@ import { NewNavbar } from "../components/NewNavbar";
 export const VideosScreen = () => {
   return (
     <View>
-      <NewNavbar />
+      <NewNavbar navigation={navigation} />
       <Text>Videos Screen</Text>
     </View>
   );
