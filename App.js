@@ -3,6 +3,7 @@ import { Provider as PaperProvider } from "react-native-paper";
 import { Main } from "./Main";
 import { NavigationContainer, LinkingOptions } from "@react-navigation/native";
 import { CategoriesContainer } from "./contexts/CategoriesContext";
+import { theme } from "./core/theme";
 
 const config = {
   screens: {
@@ -16,7 +17,7 @@ const linking: LinkingOptions = {
 
 export default function App() {
   return (
-    <PaperProvider>
+    <PaperProvider theme={theme}>
       <NavigationContainer linking={linking}>
         <CategoriesContainer>
           <Main />
