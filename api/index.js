@@ -35,7 +35,7 @@ export const getCategoryInfo = async (categoryId) => {
 }
 
 export const getCategoryArticles = async (categoryId) => {
-  const res = await fetch(`${baseUrl}/{categoryId}/articles`, {
+  const res = await fetch(`${baseUrl}/${categoryId}/articles`, {
     headers: {
       "Content-Type": "application/json",
     },
@@ -51,7 +51,7 @@ export const getCategoryArticles = async (categoryId) => {
 }
 
 export const getCategoryVideos = async (categoryId) => {
-  const res = await fetch(`${baseUrl}/{categoryId}/videos`, {
+  const res = await fetch(`${baseUrl}/${categoryId}/videos`, {
     headers: {
       "Content-Type": "application/json",
     },

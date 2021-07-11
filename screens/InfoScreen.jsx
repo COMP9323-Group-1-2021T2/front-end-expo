@@ -28,7 +28,4 @@ export const InfoScreen = ({ navigation, route }) => {
 };
 
 const styles = StyleSheet.create({
-  container: {
-    width: "90%",
-  }
 });
