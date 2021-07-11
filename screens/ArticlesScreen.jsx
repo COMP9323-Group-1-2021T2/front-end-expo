@@ -1,12 +1,13 @@
 import React, { useContext, useEffect } from "react";
-import { View, Text } from "react-native";
+import { View, StyleSheet } from "react-native";
 import { NewNavbar } from "../components/NewNavbar";
 import { CategoriesContext } from "../contexts/CategoriesContext";
 import { ContentContainer } from "../components/ContentContainer";
+import { Article } from "../components/Article";
 
 export const ArticlesScreen = ({ navigation, route }) => {
   const { categoryId } = route.params;
-  const { setSelectedCategoryId } = useContext(CategoriesContext);
+  const { articles, setSelectedCategoryId } = useContext(CategoriesContext);
 
   useEffect(() => {
     if (categoryId !== "") {
@@ -18,8 +19,28 @@ export const ArticlesScreen = ({ navigation, route }) => {
     <View>
       <NewNavbar />
       <ContentContainer>
-        <Text>Articles Screen</Text>
+        <View style={styles.container}>
+          {articles.map((article) => (
+            <View key={article.id} style={styles.articleContainer}>
+              <Article article={article} />
+            </View>
+          ))}
+        </View>
       </ContentContainer>
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    display: "flex",
+    flexWrap: "wrap",
+    flexDirection: "row",
+    justifyContent: "space-evenly",
+  },
+  articleContainer: {
+    marginBottom: 20,
+    marginRight: 20,
+    width: "30%",
+  },
+});

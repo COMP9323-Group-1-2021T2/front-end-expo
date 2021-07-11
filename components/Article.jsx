@@ -1,12 +1,12 @@
 import React from "react";
 import { Avatar, Button, Card, Title, Paragraph } from 'react-native-paper';
 
-export const Video = ({ video }) => (
+export const Article = ({ article }) => (
   <Card>
-    <Card.Cover source={{ uri: video.image }} />
+    <Card.Cover source={{ uri: article.image }} />
     <Card.Content>
-      <Title>{video.title}</Title>
-      <Paragraph numberOfLines={3}>{video.description}</Paragraph>
+      <Title>{article.title}</Title>
+      <Paragraph numberOfLines={3}>{article.description}</Paragraph>
     </Card.Content>
     <Card.Actions>
       <Button>View</Button>
