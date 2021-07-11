@@ -4,10 +4,17 @@ import { NewNavbar } from "../components/NewNavbar";
 import { CategoriesContext } from "../contexts/CategoriesContext";
 import { ContentContainer } from "../components/ContentContainer";
 import { Article } from "../components/Article";
+import { isMobileScreen } from "../core/screen";
 
 export const ArticlesScreen = ({ navigation, route }) => {
   const { categoryId } = route.params;
   const { articles, setSelectedCategoryId } = useContext(CategoriesContext);
+
+  let styles = largeStyles;
+
+  if (isMobileScreen()) {
+    styles = { ...styles, ...mobileStyles };
+  }
 
   useEffect(() => {
     if (categoryId !== "") {
@@ -31,7 +38,7 @@ export const ArticlesScreen = ({ navigation, route }) => {
   );
 };
 
-const styles = StyleSheet.create({
+const largeStyles = StyleSheet.create({
   container: {
     display: "flex",
     flexWrap: "wrap",
@@ -42,5 +49,12 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     marginRight: 20,
     width: "30%",
+  },
+});
+
+const mobileStyles = StyleSheet.create({
+  articleContainer: {
+    marginBottom: 20,
+    width: "100%",
   },
 });

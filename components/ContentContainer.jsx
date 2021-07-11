@@ -1,5 +1,5 @@
 import React from "react";
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, ScrollView, SafeAreaView } from "react-native";
 import { Headline } from "react-native-paper";
 import { useRoute, useNavigation } from "@react-navigation/native";
 import { theme } from "../core/theme";
@@ -50,7 +50,7 @@ export const ContentContainer = ({ children }) => {
           <Headline style={routeName === "Videos" && styles.selectedTab} onPress={handleOnVideosPress}>Videos</Headline>
         </View>
       </View>
-      <View style={styles.contentContainer}>{children}</View>
+      <ScrollView style={styles.contentContainer}>{children}</ScrollView>
     </View>
   );
 };

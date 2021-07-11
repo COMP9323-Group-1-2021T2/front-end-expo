@@ -1,15 +1,17 @@
 import React, { useContext, useState } from "react";
 import { View, StyleSheet } from "react-native";
-import { Headline, Menu, Divider, Title } from "react-native-paper";
+import { Headline, Menu, Divider, Title, IconButton } from "react-native-paper";
 import { theme } from "../core/theme";
 import { CategoriesContext } from "../contexts/CategoriesContext";
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation } from "@react-navigation/native";
+import { isMobileScreen } from "../core/screen";
 
 export const NewNavbar = () => {
   const navigation = useNavigation();
   const { categoriesMap } = useContext(CategoriesContext);
   const parentIds = Object.keys(categoriesMap);
   const [parentSelected, setParentSelected] = useState("");
+  const [isOpen, setIsOpen] = useState(false);
 
   const handleCategoryOnSelect = (categoryId) => {
     setParentSelected("");
@@ -25,12 +27,26 @@ export const NewNavbar = () => {
     navigation.navigate("Home");
   };
 
+  let styles = largeStyles;
+
+  if (isMobileScreen()) {
+    styles = { ...styles, ...mobileStyles };
+  }
+
   return (
     <View style={styles.container}>
       <View style={styles.titleContainer}>
-        <Title style={styles.title} onPress={handleOnTitlePress}>myWellbeing</Title>
+        <IconButton
+          icon="menu"
+          color="black"
+          size={21}
+          onPress={() => setIsOpen(!isOpen)}
+        />
+        <Title style={styles.title} onPress={handleOnTitlePress}>
+          myWellbeing
+        </Title>
       </View>
-      <View style={styles.menus}>
+      <View style={[styles.menus, isOpen ? {} : styles.menusHiddenMobile]}>
         {parentIds.map((pId) => {
           return (
             <View key={pId} style={styles.menuItem}>
@@ -39,7 +55,10 @@ export const NewNavbar = () => {
                 visible={parentSelected === pId}
                 onDismiss={() => setParentSelected("")}
                 anchor={
-                  <Headline style={styles.menuTitle} onPress={() => setParentSelected(pId)}>
+                  <Headline
+                    style={styles.menuTitle}
+                    onPress={() => setParentSelected(pId)}
+                  >
                     {categoriesMap[pId].name}
                   </Headline>
                 }
@@ -82,7 +101,7 @@ export const NewNavbar = () => {
   );
 };
 
-const styles = StyleSheet.create({
+const largeStyles = StyleSheet.create({
   container: {
     display: "flex",
     flexDirection: "row",
@@ -109,6 +128,8 @@ const styles = StyleSheet.create({
     borderRightWidth: 2,
     borderRightColor: "black",
     marginRight: 20,
+    display: "flex",
+    flexDirection: "row",
   },
   menuItem: {
     padding: 10,
@@ -120,5 +141,33 @@ const styles = StyleSheet.create({
   },
   getHelpText: {
     color: "white",
+  },
+});
+
+const mobileStyles = StyleSheet.create({
+  container: {
+    display: "flex",
+    flexDirection: "column",
+    backgroundColor: "white",
+  },
+  menus: {
+    flexDirection: "column",
+    flexGrow: 1,
+  },
+  menusHiddenMobile: {
+    display: "none",
+  },
+  titleContainer: {
+    paddingTop: 10,
+    display: "flex",
+    flexDirection: "row",
+  },
+  menuItem: {
+    cursor: "pointer",
+    paddingLeft: 40,
+  },
+  menuTitle: {
+    marginRight: 0,
+    fontSize: 20,
   },
 });
