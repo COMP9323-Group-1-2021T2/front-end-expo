@@ -3,8 +3,10 @@ import { View, StyleSheet } from "react-native";
 import { Headline, Menu, Divider, Title } from "react-native-paper";
 import { theme } from "../core/theme";
 import { CategoriesContext } from "../contexts/CategoriesContext";
+import { useNavigation } from '@react-navigation/native';
 
-export const NewNavbar = ({ navigation }) => {
+export const NewNavbar = () => {
+  const navigation = useNavigation();
   const { categoriesMap } = useContext(CategoriesContext);
   const parentIds = Object.keys(categoriesMap);
   const [parentSelected, setParentSelected] = useState("");
@@ -37,7 +39,7 @@ export const NewNavbar = ({ navigation }) => {
                 visible={parentSelected === pId}
                 onDismiss={() => setParentSelected("")}
                 anchor={
-                  <Title onPress={() => setParentSelected(pId)}>
+                  <Title style={styles.menuTitle} onPress={() => setParentSelected(pId)}>
                     {categoriesMap[pId].name}
                   </Title>
                 }
@@ -89,8 +91,10 @@ const styles = StyleSheet.create({
   menus: {
     display: "flex",
     flexDirection: "row",
-    justifyContent: "space-around",
     flexGrow: 1,
+  },
+  menuTitle: {
+    marginRight: 20,
   },
   menu: {
     marginTop: 50,

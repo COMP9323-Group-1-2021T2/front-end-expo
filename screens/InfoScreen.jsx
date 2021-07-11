@@ -2,12 +2,11 @@ import React, { useContext, useEffect }  from "react";
 import { View, Text } from "react-native";
 import { NewNavbar } from "../components/NewNavbar";
 import { CategoriesContext } from "../contexts/CategoriesContext";
+import { ContentContainer } from "../components/ContentContainer";
 
 export const InfoScreen = ({ navigation, route }) => {
   const { categoryId } = route.params;
   const { setSelectedCategoryId } = useContext(CategoriesContext);
-
-  console.log(categoryId);
 
   useEffect(() => {
     if (categoryId !== "") {
@@ -17,8 +16,10 @@ export const InfoScreen = ({ navigation, route }) => {
 
   return (
     <View>
-      <NewNavbar navigation={navigation} />
-      <Text>Info Screen</Text>
+      <NewNavbar />
+      <ContentContainer>
+        <Text>Info Screen</Text>
+      </ContentContainer>
     </View>
   );
 };

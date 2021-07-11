@@ -15,7 +15,7 @@ export const CategoriesContainer = ({ children }) => {
   const [isCategoriesLoaded, setIsCategoriesLoaded] = useState(false);
   const [categories, setCategories] = useState([]);
   const [categoriesMap, setCategoriesMap] = useState({});
-  const [selectedCategoryId, setSelectedCategoryId] = useState({});
+  const [selectedCategoryId, setSelectedCategoryId] = useState("");
   const [info, setInfo] = useState("");
   const [articles, setArticles] = useState([]);
   const [videos, setVideos] = useState([]);

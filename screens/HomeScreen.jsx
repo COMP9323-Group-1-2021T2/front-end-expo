@@ -5,7 +5,7 @@ import { NewNavbar } from "../components/NewNavbar";
 export const HomeScreen = ({ navigation }) => {
   return (
     <View>
-      <NewNavbar navigation={navigation} />
+      <NewNavbar />
       <Text>Home</Text>
     </View>
   );
