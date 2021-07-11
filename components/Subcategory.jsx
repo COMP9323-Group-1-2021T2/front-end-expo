@@ -4,7 +4,7 @@ import { Button, Menu, Divider, Provider } from 'react-native-paper';
 import { NativeRouter, Route, NavLink, Link } from "react-router-dom";
 
 function Subcategory({selected}) {
-
+    
     return (
       <View>
         <View style={{display:'flex', flexDirection:'row', justifyContent:'space-between', height:'10vh'}}>

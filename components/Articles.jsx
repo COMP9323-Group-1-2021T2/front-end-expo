@@ -2,8 +2,10 @@ import React from 'react';
 import {StyleSheet, Text, View, Platform } from 'react-native';
 import Navbar from './Navbar';
 import Subcategory from './Subcategory';
+import { useLocation } from 'react-router-dom';
 
 function Articles() {
+  const health_topic = useLocation().pathname.split("/")[1];
     return (
         <View style={styles.container}>
             <Navbar/>

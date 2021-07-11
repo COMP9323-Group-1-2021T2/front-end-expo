@@ -1,0 +1,9 @@
+Adam El Mohamad here's the mock endpoints I created for you to consume when building the FE:
+ 
+BaseURL: https://87xldh7105.execute-api.ap-southeast-2.amazonaws.com/staging
+GetCategories: https://87xldh7105.execute-api.ap-southeast-2.amazonaws.com/staging/categories
+GetCategoryInfo: https://87xldh7105.execute-api.ap-southeast-2.amazonaws.com/staging/ohs/machinery
+GetCategoryArticles: https://87xldh7105.execute-api.ap-southeast-2.amazonaws.com/staging/ohs/machinery/articles
+GetCategoryVideos: https://87xldh7105.execute-api.ap-southeast-2.amazonaws.com/staging/ohs/machinery/videos
+ 
+From the example ohs = parent category, machinery = sub category
