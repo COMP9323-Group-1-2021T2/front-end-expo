@@ -1,8 +1,10 @@
 import React from "react";
-import { View, StyleSheet, ScrollView, SafeAreaView } from "react-native";
+import { View, StyleSheet, ScrollView, FlatList, Text } from "react-native";
 import { Headline } from "react-native-paper";
 import { useRoute, useNavigation } from "@react-navigation/native";
 import { theme } from "../core/theme";
+import { Video } from "./Video";
+import ScrollBox from "react-responsive-scrollbox";
 
 export const ContentContainer = ({ children }) => {
   const route = useRoute();
@@ -35,29 +37,38 @@ export const ContentContainer = ({ children }) => {
     navigation.navigate("Videos", { categoryId })
   };
 
+ 
   return (
-    <View style={styles.container}>
-      <View style={styles.tabsContainer}>
-        <View style={styles.tabContainer}>
-          <Headline style={routeName === "Info" && styles.selectedTab} onPress={handleOnInfoPress}>Info</Headline>
+    <>
+        <View style={styles.container}>
+          <View style={styles.tabsContainer}>
+            <View style={styles.tabContainer}>
+              <Headline style={routeName === "Info" && styles.selectedTab} onPress={handleOnInfoPress}>Info</Headline>
+            </View>
+
+            <View style={styles.tabContainer}>
+              <Headline style={routeName === "Articles" && styles.selectedTab} onPress={handleOnArticlesPress}>Articles</Headline>
+            </View>
+
+            <View style={styles.tabContainer}>
+              <Headline style={routeName === "Videos" && styles.selectedTab} onPress={handleOnVideosPress}>Videos</Headline>
+            </View>
+          </View>
         </View>
 
-        <View style={styles.tabContainer}>
-          <Headline style={routeName === "Articles" && styles.selectedTab} onPress={handleOnArticlesPress}>Articles</Headline>
-        </View>
-
-        <View style={styles.tabContainer}>
-          <Headline style={routeName === "Videos" && styles.selectedTab} onPress={handleOnVideosPress}>Videos</Headline>
-        </View>
-      </View>
-      <ScrollView style={styles.contentContainer}>{children}</ScrollView>
-    </View>
+        <ScrollBox style={{height:'80vh', width:'80vw', margin:'auto'}}> 
+          <View style={{paddingBottom:'20vh'}}>
+              {children} 
+          </View>
+        </ScrollBox>
+    </>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    height:700,
+    height:'15vh',
+    width:'100%',
     marginTop: 50,
     display: "flex",
     alignItems: "center",
