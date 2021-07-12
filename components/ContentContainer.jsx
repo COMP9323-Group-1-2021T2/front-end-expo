@@ -57,6 +57,7 @@ export const ContentContainer = ({ children }) => {
 
 const styles = StyleSheet.create({
   container: {
+    height:700,
     marginTop: 50,
     display: "flex",
     alignItems: "center",
