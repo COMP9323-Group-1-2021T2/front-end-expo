@@ -1,23 +1,31 @@
-import React from 'react';
-import Videos from './components/Videos';
-import Articles from './components/Articles';
-import Home from './Home';
-import { BrowserRouter, Route, Switch, Link } from "react-router-dom";
-import General_Information from './components/General_Information';
+import React from "react";
+import { Provider as PaperProvider } from "react-native-paper";
+import { Main } from "./Main";
+import { NavigationContainer, LinkingOptions } from "@react-navigation/native";
 import { CategoriesContainer } from "./contexts/CategoriesContext";
+import { theme } from "./core/theme";
+
+const config = {
+  screens: {
+    Home: "",
+    Info: ":categoryId",
+    Articles: ":categoryId/articles",
+    Videos: ":categoryId/videos",
+  },
+};
+
+const linking: LinkingOptions = {
+  config,
+};
 
 export default function App() {
-
   return (
-    <CategoriesContainer>
-      <BrowserRouter>
-        <Switch>
-          <Route exact path="/" component={Home}/>
-          <Route path="/starting_with_safety/general_information" component={General_Information} />
-          <Route path="/starting_with_safety/videos" component={Videos} />
-          <Route path="/starting_with_safety/articles" component={Articles} />
-        </Switch>
-      </BrowserRouter>
-    </CategoriesContainer>
+    <PaperProvider theme={theme}>
+      <NavigationContainer linking={linking}>
+        <CategoriesContainer>
+          <Main />
+        </CategoriesContainer>
+      </NavigationContainer>
+    </PaperProvider>
   );
 }
