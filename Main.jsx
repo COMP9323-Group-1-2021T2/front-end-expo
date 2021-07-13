@@ -6,6 +6,7 @@ import { HomeScreen } from "./screens/HomeScreen";
 import { InfoScreen } from "./screens/InfoScreen";
 import { ArticlesScreen } from "./screens/ArticlesScreen";
 import { VideosScreen } from "./screens/VideosScreen";
+import { WatsonChatbot } from "./components/WatsonChatbot";
 
 import { createStackNavigator } from "@react-navigation/stack";
 const Stack = createStackNavigator();
@@ -22,12 +23,15 @@ export const Main = () => {
   }
 
   return (
-    <Stack.Navigator initialRouteName={"Home"} headerMode="none">
-      <Stack.Screen name="Home" component={HomeScreen} />
-      <Stack.Screen name="Info" component={InfoScreen} />
-      <Stack.Screen name="Articles" component={ArticlesScreen} />
-      <Stack.Screen name="Videos" component={VideosScreen} />
-    </Stack.Navigator>
+    <>
+      <Stack.Navigator initialRouteName={"Home"} headerMode="none">
+        <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="Info" component={InfoScreen} />
+        <Stack.Screen name="Articles" component={ArticlesScreen} />
+        <Stack.Screen name="Videos" component={VideosScreen} />
+      </Stack.Navigator>
+      <WatsonChatbot />
+    </>
   );
 };
 
