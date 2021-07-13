@@ -5,6 +5,7 @@ import { ActivityIndicator } from "react-native-paper";
 import { HomeScreen } from "./screens/HomeScreen";
 import { InfoScreen } from "./screens/InfoScreen";
 import { ArticlesScreen } from "./screens/ArticlesScreen";
+import { ContactsScreen } from "./screens/ContactsScreen";
 import { VideosScreen } from "./screens/VideosScreen";
 import { WatsonChatbot } from "./components/WatsonChatbot";
 
@@ -29,6 +30,7 @@ export const Main = () => {
         <Stack.Screen name="Info" component={InfoScreen} />
         <Stack.Screen name="Articles" component={ArticlesScreen} />
         <Stack.Screen name="Videos" component={VideosScreen} />
+        <Stack.Screen name="Contacts" component={ContactsScreen} />
       </Stack.Navigator>
       <WatsonChatbot />
     </>

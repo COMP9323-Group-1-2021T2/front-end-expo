@@ -20,11 +20,14 @@ export const NewNavbar = () => {
     });
   };
 
-  const handleTalkToOurAssistant = () => {};
+  const handleContacts = () => {
+    setParentSelected("");
+    navigation.navigate("Contacts")
+  };
 
   const handleOnTitlePress = () => {
     setParentSelected("");
-    navigation.navigate("Home");
+    navigation.navigate("");
   };
 
   let styles = largeStyles;
@@ -93,11 +96,11 @@ export const NewNavbar = () => {
           }
         >
           <Menu.Item
-            onPress={handleTalkToOurAssistant}
-            title="Talk to our chat assistant"
-            icon="chat"
+            onPress={handleContacts}
+            title="Contacts"
+            icon="phone"
           />
-          <Menu.Item icon="phone" onPress={() => {}} title="Lifeline" />
+          <Menu.Item onPress={() => {}} title="" />
         </Menu>
       </View>
     </View>

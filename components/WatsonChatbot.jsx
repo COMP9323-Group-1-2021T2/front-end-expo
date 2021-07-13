@@ -1,8 +1,24 @@
 import React, { useEffect } from "react";
 import { View } from "react-native";
 
+
 export const WatsonChatbot = () => {
   useEffect(() => {
+
+      var styles = `
+        .WAC__homeScreenOriginal-starter-text { 
+            color: black !important
+        }
+        .WAC__homeScreenOriginal-starter-icon {
+          fill: #D64204 !important
+        }
+
+      `
+    var styleSheet = document.createElement("style")
+    styleSheet.innerText = styles
+    document.head.appendChild(styleSheet)
+
+
     console.log("Watson loaded");
     window.watsonAssistantChatOptions = {
       integrationID: "fc29a42b-8166-4aea-9b1e-1a2ad1c11249", // The ID of this integration.
