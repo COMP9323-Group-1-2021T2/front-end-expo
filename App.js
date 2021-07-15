@@ -11,6 +11,7 @@ const config = {
     Info: ":categoryId",
     Articles: ":categoryId/articles",
     Videos: ":categoryId/videos",
+    Contacts: "contacts",
   },
 };
 
