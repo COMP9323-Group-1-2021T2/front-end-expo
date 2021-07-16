@@ -106,7 +106,6 @@ export const NewNavbar = () => {
     </View>
   );
 };
-
 const largeStyles = StyleSheet.create({
   container: {
     display: "flex",
