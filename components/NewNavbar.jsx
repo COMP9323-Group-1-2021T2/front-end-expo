@@ -100,7 +100,7 @@ export const NewNavbar = () => {
             title="Contacts"
             icon="phone"
           />
-          <Menu.Item onPress={() => {}} title="" />
+          <Menu.Item titleStyle={{marginTop:'3%', color: "#d64204", paddingBottom: "5%"}} onPress={() => {window.open("https://www.triplezero.gov.au/", "_blank")}} title={`If you or someone close to you is\nin distress or immediate danger,\ndial 000 as soon as possible.`} />
         </Menu>
       </View>
     </View>
