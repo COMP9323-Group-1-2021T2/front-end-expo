@@ -1,5 +1,13 @@
-import React, { useState, useEffect } from "react";
-import { getCategories, getCategoryInfo, getCategoryArticles, getCategoryVideos } from "../api";
+import React, { useContext, useState, useEffect } from "react";
+import {
+  getCategories,
+  getCategoryInfo,
+  getCategoryArticles,
+  getCategoryVideos,
+  createVideo as apiCreateVideo,
+  updateVideo as apiUpdateVideo,
+} from "../api";
+import { UserContext } from "./UserContext";
 
 export const CategoriesContext = React.createContext({
   isCategoriesLoaded: false,
@@ -9,6 +17,10 @@ export const CategoriesContext = React.createContext({
   articles: [],
   videos: [],
   info: "",
+  createVideo: () => Promise.resolve(),
+  updateVideo: () => Promise.resolve(),
+  createArticle: () => Promise.resolve(),
+  updateArticle: () => Promise.resolve(),
 });
 
 export const CategoriesContainer = ({ children }) => {
@@ -20,10 +32,12 @@ export const CategoriesContainer = ({ children }) => {
   const [articles, setArticles] = useState([]);
   const [videos, setVideos] = useState([]);
 
+  const { accessToken } = useContext(UserContext);
+
   // GetCategories on initial load
   useEffect(() => {
-    (async() => {
-      setCategories(await getCategories())
+    (async () => {
+      setCategories(await getCategories());
       setIsCategoriesLoaded(true);
     })();
   }, []);
@@ -40,7 +54,7 @@ export const CategoriesContainer = ({ children }) => {
         cm[category.id] = {
           name: category.name,
           subCategories: [],
-        }
+        };
       } else {
         cm[category.parent_id].subCategories.push({
           id: category.id,
@@ -58,7 +72,7 @@ export const CategoriesContainer = ({ children }) => {
       return;
     }
 
-    (async() => {
+    (async () => {
       setInfo(await getCategoryInfo(selectedCategoryId));
     })();
   }, [selectedCategoryId]);
@@ -69,7 +83,7 @@ export const CategoriesContainer = ({ children }) => {
       return;
     }
 
-    (async() => {
+    (async () => {
       setArticles(await getCategoryArticles(selectedCategoryId));
     })();
   }, [selectedCategoryId]);
@@ -80,10 +94,70 @@ export const CategoriesContainer = ({ children }) => {
       return;
     }
 
-    (async() => {
+    (async () => {
       setVideos(await getCategoryVideos(selectedCategoryId));
     })();
   }, [selectedCategoryId]);
+
+  const createVideo = async ({ title, url, image, description }) => {
+    await apiCreateVideo(
+      accessToken,
+      selectedCategoryId,
+      title,
+      url,
+      image,
+      description
+    );
+
+    setVideos(await getCategoryVideos(selectedCategoryId));
+  };
+
+  const updateVideo = async ({ videoId, title, url, image, description }) => {
+    await apiUpdateVideo(
+      accessToken,
+      selectedCategoryId,
+      videoId,
+      title,
+      url,
+      image,
+      description
+    );
+
+    setVideos(await getCategoryVideos(selectedCategoryId));
+  };
+
+  const createArticle = async ({ title, url, image, description }) => {
+    await apiCreateArticle(
+      accessToken,
+      selectedCategoryId,
+      title,
+      url,
+      image,
+      description
+    );
+
+    setArticle(await getCategoryArticles(selectedCategoryId));
+  };
+
+  const updateArticle = async ({
+    articleId,
+    title,
+    url,
+    image,
+    description,
+  }) => {
+    await apiUpdateArticle(
+      accessToken,
+      selectedCategoryId,
+      articleId,
+      title,
+      url,
+      image,
+      description
+    );
+
+    setArticle(await getCategoryArticles(selectedCategoryId));
+  };
 
   const contextValue = {
     setSelectedCategoryId,
@@ -93,8 +167,11 @@ export const CategoriesContainer = ({ children }) => {
     info,
     videos,
     articles,
-  }
-
+    createVideo,
+    updateVideo,
+    createArticle,
+    updateArticle,
+  };
 
   return (
     <CategoriesContext.Provider value={contextValue}>

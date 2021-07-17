@@ -3,7 +3,7 @@ import { View, StyleSheet } from "react-native";
 import { Title, TextInput, Button } from "react-native-paper";
 import { isMobileScreen } from "../core/screen";
 
-export const VideoModal = ({ video, onSave, onDelete }) => {
+export const VideoModal = ({ video, onSave, onDelete, onCancel }) => {
   const [modalTitle, setModalTitle] = useState("");
   const [buttonText, setButtonText] = useState("");
   const [title, setTitle] = useState("");
@@ -34,6 +34,15 @@ export const VideoModal = ({ video, onSave, onDelete }) => {
       setButtonText("Create");
     }
   }, [video]);
+
+  const handleOnSave = () => {
+    onSave({
+      title,
+      url,
+      image,
+      description,
+    });
+  }
 
   return (
     <View style={styles.container}>
@@ -68,15 +77,22 @@ export const VideoModal = ({ video, onSave, onDelete }) => {
           onChangeText={(t) => setDescription(t)}
         />
         <View style={styles.buttonsContainer}>
-          <Button mode="contained" onPress={onSave}>
+          <Button mode="contained" onPress={handleOnSave}>
             {buttonText}
           </Button>
 
-          {video && (
-            <Button mode="text" onPress={onDelete}>
-              Delete
-            </Button>
-          )}
+          <View style={styles.rightButtons}>
+            {video && (
+              <Button mode="text" onPress={onDelete}>
+                Delete
+              </Button>
+            )}
+
+            <Button mode="text" onPress={onCancel}>
+                Cancel
+              </Button>
+          </View>
+
         </View>
       </View>
     </View>
@@ -103,6 +119,10 @@ const largeStyles = StyleSheet.create({
   buttonsContainer: {
     display: "flex",
     justifyContent: "space-between",
+    flexDirection: "row",
+  },
+  rightButtons: {
+    display: "flex",
     flexDirection: "row",
   },
 });

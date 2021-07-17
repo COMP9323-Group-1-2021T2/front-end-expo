@@ -12,7 +12,7 @@ import { VideoModal } from "../components/VideoModal";
 
 export const VideosScreen = ({ navigation, route }) => {
   const { categoryId } = route.params;
-  const { videos, setSelectedCategoryId } = useContext(CategoriesContext);
+  const { videos, setSelectedCategoryId, createVideo, updateVideo } = useContext(CategoriesContext);
   const { isLoggedIn } = useContext(UserContext);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [selectedVideo, setSelectedVideo] = useState(undefined);
@@ -44,6 +44,36 @@ export const VideosScreen = ({ navigation, route }) => {
     setIsModalVisible(false);
   };
 
+  const handleOnDelete = () => {
+    alert(`Delete: ${selectedVideo.id}`);
+  };
+
+  const handleOnSave = async ({ title, url, image, description }) => {
+    try {
+      if (selectedVideo) {
+        await createVideo({
+          videoId: selectedVideo.id,
+          title,
+          url,
+          image,
+          description
+        })
+
+      } else {
+        await createVideo({
+          title,
+          url,
+          image,
+          description
+        })
+      }
+
+      handleOnModalDismiss();
+    } catch (e) {
+      alert(e.message);
+    }
+  };
+
   return (
     <View>
       <NewNavbar />
@@ -69,8 +99,17 @@ export const VideosScreen = ({ navigation, route }) => {
         </View>
       </ContentContainer>
 
-      <Modal style={styles.modal} visible={isModalVisible} onDismiss={handleOnModalDismiss}>
-        <VideoModal video={selectedVideo} />
+      <Modal
+        style={styles.modal}
+        visible={isModalVisible}
+        onDismiss={handleOnModalDismiss}
+      >
+        <VideoModal
+          video={selectedVideo}
+          onDelete={handleOnDelete}
+          onSave={handleOnSave}
+          onCancel={handleOnModalDismiss}
+        />
       </Modal>
     </View>
   );
@@ -81,12 +120,11 @@ const largeStyles = StyleSheet.create({
     display: "flex",
     flexWrap: "wrap",
     flexDirection: "row",
-    justifyContent: "space-evenly",
   },
   videoContainer: {
     marginBottom: 20,
     marginRight: 20,
-    width: "30%",
+    width: "31%",
     alignItems: "streth",
   },
   modal: {

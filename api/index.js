@@ -86,3 +86,100 @@ export const login = async (email, password) => {
 
   return jsonData.accessToken;
 }
+
+export const createVideo = async (accessToken, categoryId, title, url, image, description) => {
+  console.log(title, url, image, description);
+  const res = await fetch(`${baseUrl}/${categoryId}/videos`, {
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${accessToken}`,
+    },
+    method: "POST",
+    body: JSON.stringify({
+      title,
+      url,
+      image,
+      description
+    }),
+  });
+
+  const jsonData = await res.json();
+
+  if (!res.ok) {
+    throw new Error(`Failed to create a video`);
+  }
+
+  return jsonData.data;
+}
+
+export const updateVideo = async (accessToken, categoryId, videoId, title, url, image, description) => {
+  const res = await fetch(`${baseUrl}/${categoryId}/videos/${videoId}`, {
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${accessToken}`,
+    },
+    method: "PUT",
+    body: JSON.stringify({
+      title,
+      url,
+      image,
+      description
+    }),
+  });
+
+  const jsonData = await res.json();
+
+  if (!res.ok) {
+    throw new Error(`Failed to update a video`);
+  }
+
+  return jsonData.data;
+}
+
+export const createArticle = async (accessToken, categoryId, title, url, image, description) => {
+  const res = await fetch(`${baseUrl}/${categoryId}/articles`, {
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${accessToken}`,
+    },
+    method: "POST",
+    body: JSON.stringify({
+      title,
+      url,
+      image,
+      description
+    }),
+  });
+
+  const jsonData = await res.json();
+
+  if (!res.ok) {
+    throw new Error(`Failed to create an article`);
+  }
+
+  return jsonData.data;
+}
+
+export const updateArticle = async (accessToken, categoryId, articleId, title, url, image, description) => {
+  const res = await fetch(`${baseUrl}/${categoryId}/articles/${articleId}`, {
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${accessToken}`,
+    },
+    method: "PUT",
+    body: JSON.stringify({
+      title,
+      url,
+      image,
+      description
+    }),
+  });
+
+  const jsonData = await res.json();
+
+  if (!res.ok) {
+    throw new Error(`Failed to update an article`);
+  }
+
+  return jsonData.data;
+}

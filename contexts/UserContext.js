@@ -7,6 +7,7 @@ export const UserContext = React.createContext({
   isLoggedIn: false,
   loginUser: () => {},
   logoutUser: () => {},
+  accessToken: "",
 });
 
 export const UserContainer = ({ children }) => {
@@ -54,6 +55,7 @@ export const UserContainer = ({ children }) => {
     isLoggedIn,
     loginUser,
     logoutUser,
+    accessToken,
   }
 
   return (
