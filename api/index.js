@@ -88,7 +88,6 @@ export const login = async (email, password) => {
 }
 
 export const createVideo = async (accessToken, categoryId, title, url, image, description) => {
-  console.log(title, url, image, description);
   const res = await fetch(`${baseUrl}/${categoryId}/videos`, {
     headers: {
       "Content-Type": "application/json",
@@ -107,6 +106,24 @@ export const createVideo = async (accessToken, categoryId, title, url, image, de
 
   if (!res.ok) {
     throw new Error(`Failed to create a video`);
+  }
+
+  return jsonData.data;
+}
+
+export const deleteVideo = async (accessToken, categoryId, videoId) => {
+  const res = await fetch(`${baseUrl}/${categoryId}/videos/${videoId}`, {
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${accessToken}`,
+    },
+    method: "DELETE",
+  });
+
+  const jsonData = await res.json();
+
+  if (!res.ok) {
+    throw new Error(`Failed to delete a video`);
   }
 
   return jsonData.data;
@@ -179,6 +196,24 @@ export const updateArticle = async (accessToken, categoryId, articleId, title, u
 
   if (!res.ok) {
     throw new Error(`Failed to update an article`);
+  }
+
+  return jsonData.data;
+}
+
+export const deleteArticle = async (accessToken, categoryId, articleId) => {
+  const res = await fetch(`${baseUrl}/${categoryId}/articles/${articleId}`, {
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${accessToken}`,
+    },
+    method: "DELETE",
+  });
+
+  const jsonData = await res.json();
+
+  if (!res.ok) {
+    throw new Error(`Failed to delete an article`);
   }
 
   return jsonData.data;

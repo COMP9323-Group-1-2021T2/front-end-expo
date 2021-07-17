@@ -92,7 +92,6 @@ export const VideoModal = ({ video, onSave, onDelete, onCancel }) => {
                 Cancel
               </Button>
           </View>
-
         </View>
       </View>
     </View>

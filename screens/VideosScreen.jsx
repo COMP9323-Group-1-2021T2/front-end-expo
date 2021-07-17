@@ -12,7 +12,13 @@ import { VideoModal } from "../components/VideoModal";
 
 export const VideosScreen = ({ navigation, route }) => {
   const { categoryId } = route.params;
-  const { videos, setSelectedCategoryId, createVideo, updateVideo } = useContext(CategoriesContext);
+  const {
+    videos,
+    setSelectedCategoryId,
+    createVideo,
+    updateVideo,
+    deleteVideo,
+  } = useContext(CategoriesContext);
   const { isLoggedIn } = useContext(UserContext);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [selectedVideo, setSelectedVideo] = useState(undefined);
@@ -44,28 +50,32 @@ export const VideosScreen = ({ navigation, route }) => {
     setIsModalVisible(false);
   };
 
-  const handleOnDelete = () => {
-    alert(`Delete: ${selectedVideo.id}`);
+  const handleOnDelete = async () => {
+    try {
+      await deleteVideo(selectedVideo.id);
+      handleOnModalDismiss();
+    } catch (e) {
+      alert(e.message);
+    }
   };
 
   const handleOnSave = async ({ title, url, image, description }) => {
     try {
       if (selectedVideo) {
-        await createVideo({
+        await updateVideo({
           videoId: selectedVideo.id,
           title,
           url,
           image,
-          description
-        })
-
+          description,
+        });
       } else {
         await createVideo({
           title,
           url,
           image,
-          description
-        })
+          description,
+        });
       }
 
       handleOnModalDismiss();

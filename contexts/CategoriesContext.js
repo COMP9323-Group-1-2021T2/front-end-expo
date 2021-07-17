@@ -6,6 +6,7 @@ import {
   getCategoryVideos,
   createVideo as apiCreateVideo,
   updateVideo as apiUpdateVideo,
+  deleteVideo as apiDeleteVideo,
 } from "../api";
 import { UserContext } from "./UserContext";
 
@@ -126,6 +127,11 @@ export const CategoriesContainer = ({ children }) => {
     setVideos(await getCategoryVideos(selectedCategoryId));
   };
 
+  const deleteVideo = async(videoId) => {
+    await apiDeleteVideo(accessToken, selectedCategoryId, videoId)
+    setVideos(await getCategoryVideos(selectedCategoryId));
+  }
+
   const createArticle = async ({ title, url, image, description }) => {
     await apiCreateArticle(
       accessToken,
@@ -159,6 +165,11 @@ export const CategoriesContainer = ({ children }) => {
     setArticle(await getCategoryArticles(selectedCategoryId));
   };
 
+  const deleteArticle = async(articleId) => {
+    await apiDeleteArticle(accessToken, selectedCategoryId, articleId)
+    setArticles(await getCategoryArticles(selectedCategoryId));
+  }
+
   const contextValue = {
     setSelectedCategoryId,
     isCategoriesLoaded,
@@ -169,8 +180,10 @@ export const CategoriesContainer = ({ children }) => {
     articles,
     createVideo,
     updateVideo,
+    deleteVideo,
     createArticle,
     updateArticle,
+    deleteArticle,
   };
 
   return (
