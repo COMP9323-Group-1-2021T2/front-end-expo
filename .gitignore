@@ -10,5 +10,4 @@ npm-debug.*
 
 # macOS
 .DS_Store
-
 .vercel

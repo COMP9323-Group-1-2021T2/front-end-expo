@@ -21,7 +21,6 @@ export const NewNavbar = () => {
       categoryId,
     });
   };
-
   const handleContacts = () => {
     setParentSelected("");
     navigation.navigate("Contacts");
