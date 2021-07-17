@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { getCategories, getCategoryInfo, getCategoryArticles, getCategoryVideos } from "../api";
 
 export const UserContext = React.createContext({
   doneInitialising: false,
