@@ -2,7 +2,7 @@ import React from "react";
 import { Avatar, Button, Card, Title, Paragraph } from "react-native-paper";
 import { StyleSheet } from "react-native";
 
-export const Video = ({ video }) => (
+export const Video = ({ video, onEdit, isEditable }) => (
   <Card style={styles.container}>
     <Card.Cover source={{ uri: video.image }} />
     <Card.Content style={styles.content}>
@@ -17,6 +17,9 @@ export const Video = ({ video }) => (
       >
         View
       </Button>
+      {isEditable && (
+        <Button onPress={() => onEdit(video)}>Edit</Button>
+      )}
     </Card.Actions>
   </Card>
 );
