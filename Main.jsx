@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { CategoriesContext } from "./contexts/CategoriesContext";
 import { View, StyleSheet } from "react-native";
-import { ActivityIndicator } from "react-native-paper";
+import { ActivityIndicator, Title } from "react-native-paper";
 import { HomeScreen } from "./screens/HomeScreen";
 import { InfoScreen } from "./screens/InfoScreen";
 import { ArticlesScreen } from "./screens/ArticlesScreen";
@@ -18,7 +18,8 @@ export const Main = () => {
   if (!isCategoriesLoaded) {
     return (
       <View style={styles.loadingContainer}>
-        <ActivityIndicator animating={true} />
+        <Title>Initialising</Title>
+        <ActivityIndicator animating={true} size={40}/>
       </View>
     );
   }
@@ -42,5 +43,6 @@ const styles = StyleSheet.create({
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
+    height: "100%",
   },
 });

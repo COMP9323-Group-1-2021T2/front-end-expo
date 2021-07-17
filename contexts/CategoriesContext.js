@@ -24,6 +24,7 @@ export const CategoriesContainer = ({ children }) => {
   useEffect(() => {
     (async() => {
       setCategories(await getCategories())
+      setIsCategoriesLoaded(true);
     })();
   }, []);
 
@@ -50,12 +51,6 @@ export const CategoriesContainer = ({ children }) => {
 
     setCategoriesMap(cm);
   }, [categories]);
-
-  useEffect(() => {
-    if (categoriesMap !== {}) {
-      setIsCategoriesLoaded(true);
-    }
-  }, [categoriesMap]);
 
   // get category info when selectedCategoryId updates
   useEffect(() => {
