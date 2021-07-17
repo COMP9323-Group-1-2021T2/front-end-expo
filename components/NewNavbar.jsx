@@ -25,7 +25,6 @@ export const NewNavbar = () => {
     setParentSelected("");
     navigation.navigate("Contacts");
   };
-
   const handleOnTitlePress = () => {
     setParentSelected("");
     navigation.navigate("");
