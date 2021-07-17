@@ -65,3 +65,24 @@ export const getCategoryVideos = async (categoryId) => {
 
   return jsonData.data;
 }
+
+export const login = async (email, password) => {
+  const res = await fetch(`${baseUrl}/login`, {
+    headers: {
+      "Content-Type": "application/json",
+    },
+    method: "POST",
+    body: JSON.stringify({
+      email,
+      password
+    }),
+  });
+
+  const jsonData = await res.json();
+
+  if (!res.ok) {
+    throw new Error(`Login failed. Check your email and password.`);
+  }
+
+  return jsonData.accessToken;
+}
