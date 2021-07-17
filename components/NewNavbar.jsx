@@ -226,4 +226,11 @@ const mobileStyles = StyleSheet.create({
     marginRight: 0,
     fontSize: 20,
   },
+  getHelpContainer: {
+    padding: 10,
+    backgroundColor: theme.colors.primary,
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+  },
 });
