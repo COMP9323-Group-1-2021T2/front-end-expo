@@ -1,14 +1,16 @@
 import React, { useContext, useState } from "react";
 import { View, StyleSheet } from "react-native";
-import { Headline, Menu, Divider, Title, IconButton } from "react-native-paper";
+import { Headline, Menu, Button, Title, IconButton } from "react-native-paper";
 import { theme } from "../core/theme";
 import { CategoriesContext } from "../contexts/CategoriesContext";
+import { UserContext } from "../contexts/UserContext";
 import { useNavigation } from "@react-navigation/native";
 import { isMobileScreen } from "../core/screen";
 
 export const NewNavbar = () => {
   const navigation = useNavigation();
   const { categoriesMap } = useContext(CategoriesContext);
+  const { isLoggedIn, logoutUser } = useContext(UserContext);
   const parentIds = Object.keys(categoriesMap);
   const [parentSelected, setParentSelected] = useState("");
   const [isOpen, setIsOpen] = useState(false);
@@ -22,7 +24,7 @@ export const NewNavbar = () => {
 
   const handleContacts = () => {
     setParentSelected("");
-    navigation.navigate("Contacts")
+    navigation.navigate("Contacts");
   };
 
   const handleOnTitlePress = () => {
@@ -30,9 +32,19 @@ export const NewNavbar = () => {
     navigation.navigate("");
   };
 
+  const handleLoginPress = () => {
+    setParentSelected("");
+    navigation.navigate("Login");
+  };
+
+  const handleLogoutPress = () => {
+    setParentSelected("");
+    logoutUser();
+  };
+
   let styles = largeStyles;
 
-  const isMobile = isMobileScreen()
+  const isMobile = isMobileScreen();
 
   if (isMobile) {
     styles = { ...styles, ...mobileStyles };
@@ -51,6 +63,18 @@ export const NewNavbar = () => {
         <Title style={styles.title} onPress={handleOnTitlePress}>
           myWellbeing
         </Title>
+
+        <View style={[isMobile ? styles.loginContainer : { display: "none" } ]}>
+          {isLoggedIn ? (
+            <Button mode="text" onPress={handleLogoutPress}>
+              Logout
+            </Button>
+          ) : (
+            <Button mode="text" onPress={handleLoginPress}>
+              Login
+            </Button>
+          )}
+        </View>
       </View>
       <View style={[styles.menus, isOpen ? {} : styles.menusHiddenMobile]}>
         {parentIds.map((pId) => {
@@ -81,6 +105,17 @@ export const NewNavbar = () => {
           );
         })}
       </View>
+      <View style={[isMobile ? { display: "none" }: styles.loginContainer ]}>
+        {isLoggedIn ? (
+          <Button mode="text" onPress={handleLogoutPress}>
+            Logout
+          </Button>
+        ) : (
+          <Button mode="text" onPress={handleLoginPress}>
+            Login
+          </Button>
+        )}
+      </View>
       <View style={styles.getHelpContainer}>
         <Menu
           style={styles.menu}
@@ -95,12 +130,18 @@ export const NewNavbar = () => {
             </Title>
           }
         >
+          <Menu.Item onPress={handleContacts} title="Contacts" icon="phone" />
           <Menu.Item
-            onPress={handleContacts}
-            title="Contacts"
-            icon="phone"
+            titleStyle={{
+              marginTop: "3%",
+              color: "#d64204",
+              paddingBottom: "5%",
+            }}
+            onPress={() => {
+              window.open("https://www.triplezero.gov.au/", "_blank");
+            }}
+            title={`If you or someone close to you is\nin distress or immediate danger,\ndial 000 as soon as possible.`}
           />
-          <Menu.Item titleStyle={{marginTop:'3%', color: "#d64204", paddingBottom: "5%"}} onPress={() => {window.open("https://www.triplezero.gov.au/", "_blank")}} title={`If you or someone close to you is\nin distress or immediate danger,\ndial 000 as soon as possible.`} />
         </Menu>
       </View>
     </View>
@@ -112,6 +153,11 @@ const largeStyles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     backgroundColor: "white",
+  },
+  loginContainer: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
   },
   title: {
     fontSize: 30,
@@ -155,12 +201,17 @@ const mobileStyles = StyleSheet.create({
     flexDirection: "column",
     backgroundColor: "white",
   },
+  loginContainer: {},
   menus: {
     flexDirection: "column",
     flexGrow: 1,
   },
   menusHiddenMobile: {
     display: "none",
+  },
+  title: {
+    fontSize: 30,
+    flexGrow: 1,
   },
   titleContainer: {
     paddingTop: 10,

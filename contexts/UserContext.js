@@ -4,25 +4,34 @@ import { login } from "../api";
 
 export const UserContext = React.createContext({
   doneInitialising: false,
+  isLoggedIn: false,
   loginUser: () => {},
+  logoutUser: () => {},
 });
 
 export const UserContainer = ({ children }) => {
   const [doneInitialising, setIsDoneInitialising] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [accessToken, setAccessToken] = useState("");
 
   const loginUser = async (email, password) => {
     setAccessToken(await login(email, password))
   }
 
+  const logoutUser = () => {
+    setAccessToken("");
+  }
+
   // Set token to localstorage if it changes
   useEffect(() => {
     if (accessToken === "") {
+      setIsLoggedIn(false);
       return;
     }
 
     (async() => {
       await AsyncStorage.setItem("token", accessToken)
+      setIsLoggedIn(true);
     })();
 
   }, [accessToken]);
@@ -42,7 +51,9 @@ export const UserContainer = ({ children }) => {
 
   const contextValue = {
     doneInitialising,
+    isLoggedIn,
     loginUser,
+    logoutUser,
   }
 
   return (
