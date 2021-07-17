@@ -2,7 +2,7 @@ import React from "react";
 import { Avatar, Button, Card, Title, Paragraph } from "react-native-paper";
 import { StyleSheet } from "react-native";
 
-export const Article = ({ article }) => (
+export const Article = ({ article, onEdit, isEditable }) => (
   <Card style={styles.container}>
     <Card.Cover source={{ uri: article.image }} />
     <Card.Content style={styles.content}>
@@ -17,6 +17,9 @@ export const Article = ({ article }) => (
       >
         View
       </Button>
+      {isEditable && (
+        <Button onPress={() => onEdit(article)}>Edit</Button>
+      )}
     </Card.Actions>
   </Card>
 );

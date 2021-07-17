@@ -7,6 +7,9 @@ import {
   createVideo as apiCreateVideo,
   updateVideo as apiUpdateVideo,
   deleteVideo as apiDeleteVideo,
+  createArticle as apiCreateArticle,
+  updateArticle as apiUpdateArticle,
+  deleteArticle as apiDeleteArticle,
 } from "../api";
 import { UserContext } from "./UserContext";
 
@@ -142,7 +145,7 @@ export const CategoriesContainer = ({ children }) => {
       description
     );
 
-    setArticle(await getCategoryArticles(selectedCategoryId));
+    setArticles(await getCategoryArticles(selectedCategoryId));
   };
 
   const updateArticle = async ({
@@ -162,7 +165,7 @@ export const CategoriesContainer = ({ children }) => {
       description
     );
 
-    setArticle(await getCategoryArticles(selectedCategoryId));
+    setArticles(await getCategoryArticles(selectedCategoryId));
   };
 
   const deleteArticle = async(articleId) => {
