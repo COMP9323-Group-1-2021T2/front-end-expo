@@ -43,6 +43,7 @@ export const NewNavbar = () => {
   let styles = largeStyles;
 
   const isMobile = isMobileScreen();
+  const emergency = <Text style={{color:'#E78587'}}> 000 </Text>
 
   if (isMobile) {
     styles = { ...styles, ...mobileStyles };
@@ -128,18 +129,19 @@ export const NewNavbar = () => {
             </Title>
           }
         >
-          <Menu.Item onPress={handleContacts} title="Contacts" icon="phone" />
           <Menu.Item
             titleStyle={{
-              marginTop: "3%",
               color: "#d64204",
-              paddingBottom: "5%",
             }}
+            style={{marginTop:"10%"}}
             onPress={() => {
               window.open("https://www.triplezero.gov.au/", "_blank");
             }}
-            title={`If you or someone close to you is\nin distress or immediate danger,\ndial 000 as soon as possible.`}
-          />
+
+            title={"If you or someone close to you is\nin distress or immediate danger," + `\n` + "dial" + " 000 " + "as soon as possible."}
+          >
+          </Menu.Item>
+          <Menu.Item style={{marginTop:"10%"}} onPress={handleContacts} title="Contacts" icon="phone"/>
         </Menu>
       </View>
     </View>
