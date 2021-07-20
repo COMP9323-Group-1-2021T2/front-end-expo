@@ -172,6 +172,7 @@ const largeStyles = StyleSheet.create({
   },
   menu: {
     marginTop: 50,
+   // marginLeft:'25%'
   },
   titleContainer: {
     paddingVertical: 10,
