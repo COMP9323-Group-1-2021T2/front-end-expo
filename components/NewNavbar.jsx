@@ -6,6 +6,9 @@ import { CategoriesContext } from "../contexts/CategoriesContext";
 import { UserContext } from "../contexts/UserContext";
 import { useNavigation } from "@react-navigation/native";
 import { isMobileScreen } from "../core/screen";
+import { Dimensions } from 'react-native';
+const screenWidth = Dimensions.get('screen').width;
+const windowWidth = Dimensions.get('window').width;
 
 export const NewNavbar = () => {
   const navigation = useNavigation();
@@ -117,7 +120,7 @@ export const NewNavbar = () => {
       </View>
       <View style={styles.getHelpContainer}>
         <Menu
-          style={styles.menu}
+          style={[styles.menu, screenWidth, windowWidth < 400 ? styles.mobileMenu : styles.menu]}
           visible={parentSelected === "get-help"}
           onDismiss={() => setParentSelected("")}
           anchor={
@@ -172,7 +175,9 @@ const largeStyles = StyleSheet.create({
   },
   menu: {
     marginTop: 50,
-   // marginLeft:'25%'
+  },
+  mobileMenu: {
+    marginLeft:'25%'
   },
   titleContainer: {
     paddingVertical: 10,

@@ -7,7 +7,7 @@ import ScrollBox from "react-responsive-scrollbox";
 
 import { Dimensions } from 'react-native';
 const screenWidth = Dimensions.get('screen').width;
-console.log(screenWidth)
+const windowWidth = Dimensions.get('window').width;
 
 export const ContactsScreen = () => {
 
@@ -41,7 +41,7 @@ export const ContactsScreen = () => {
                             {contact.category.length > 0 ? <Text style={{padding:'1vw', fontSize: '18px', fontWeight:'bold'}}> {contact.category} </Text> : ''}
                             <Card style={{maxWidth: '600px', width:'100%', marginBottom:'2%'}}>
                                 <Card.Content>
-                                    <View style={[styles.cardContent, screenWidth < 600 ? styles.flexColumn : styles.flexRow]}>
+                                    <View style={[styles.cardContent, screenWidth, windowWidth < 600 ? styles.flexColumn : styles.flexRow]}>
                                         <View style={{width:"30%", height:"10vh"}}>
                                             <Image source={require(`../assets/${i}.PNG`)} resizeMode = "contain" style={{ maxWidth: '110px', maxHeight: '110px',  width: '90%', height:'100%', marginBottom:'10px' }}/>
                                         </View>
