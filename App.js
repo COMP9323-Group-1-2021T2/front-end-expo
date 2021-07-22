@@ -3,6 +3,7 @@ import { Provider as PaperProvider } from "react-native-paper";
 import { Main } from "./Main";
 import { NavigationContainer } from "@react-navigation/native";
 import { CategoriesContainer } from "./contexts/CategoriesContext";
+import { QuestionsContainer } from "./contexts/QuestionsContext";
 import { UserContainer } from "./contexts/UserContext";
 import { theme } from "./core/theme";
 
@@ -27,9 +28,11 @@ export default function App() {
     <PaperProvider theme={theme}>
       <NavigationContainer linking={linking}>
         <UserContainer>
-          <CategoriesContainer>
-            <Main />
-          </CategoriesContainer>
+          <QuestionsContainer>
+            <CategoriesContainer>
+              <Main />
+            </CategoriesContainer>
+          </QuestionsContainer>
         </UserContainer>
       </NavigationContainer>
     </PaperProvider>

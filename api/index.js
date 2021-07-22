@@ -218,3 +218,22 @@ export const deleteArticle = async (accessToken, categoryId, articleId) => {
 
   return jsonData.data;
 }
+
+export const getQuestions = async (accessToken) => {
+  const url = accessToken ? `${baseUrl}/questions/admin` : `${baseUrl}/questions`;
+
+  const res = await fetch(url, {
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${accessToken}`,
+    },
+  });
+
+  const jsonData = await res.json();
+
+  if (!res.ok) {
+    throw new Error(`failed to fetch questions`);
+  }
+
+  return jsonData.data;
+}
