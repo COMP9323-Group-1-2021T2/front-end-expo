@@ -19,8 +19,9 @@ export const UserContainer = ({ children }) => {
     setAccessToken(await login(email, password))
   }
 
-  const logoutUser = () => {
+  const logoutUser = async () => {
     setAccessToken("");
+    await AsyncStorage.setItem("token", "")
   }
 
   // Set token to localstorage if it changes

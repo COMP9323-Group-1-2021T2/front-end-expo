@@ -4,6 +4,7 @@ import { Main } from "./Main";
 import { NavigationContainer } from "@react-navigation/native";
 import { CategoriesContainer } from "./contexts/CategoriesContext";
 import { QuestionsContainer } from "./contexts/QuestionsContext";
+import { NotificationContainer } from "./contexts/NotificationContext";
 import { UserContainer } from "./contexts/UserContext";
 import { theme } from "./core/theme";
 
@@ -27,13 +28,15 @@ export default function App() {
   return (
     <PaperProvider theme={theme}>
       <NavigationContainer linking={linking}>
-        <UserContainer>
-          <QuestionsContainer>
-            <CategoriesContainer>
-              <Main />
-            </CategoriesContainer>
-          </QuestionsContainer>
-        </UserContainer>
+        <NotificationContainer>
+          <UserContainer>
+            <QuestionsContainer>
+              <CategoriesContainer>
+                <Main />
+              </CategoriesContainer>
+            </QuestionsContainer>
+          </UserContainer>
+        </NotificationContainer>
       </NavigationContainer>
     </PaperProvider>
   );

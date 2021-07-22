@@ -4,9 +4,11 @@ import { List, Title, Button, Modal } from "react-native-paper";
 import { NewNavbar } from "../components/NewNavbar";
 import { AskQuestionModal } from "../components/AskQuestionModal";
 import { QuestionsContext } from "../contexts/QuestionsContext";
+import { NotificationContext } from "../contexts/NotificationContext";
 
 export const QuestionsScreen = ({ navigation }) => {
   const { questions, createQuestion } = useContext(QuestionsContext);
+  const { setNotification } = useContext(NotificationContext);
 
   const [isModalVisible, setIsModalVisible] = useState(false);
 
@@ -22,6 +24,7 @@ export const QuestionsScreen = ({ navigation }) => {
     try {
       await createQuestion(question);
       setIsModalVisible(false);
+      setNotification("Successfully submitted your question")
     } catch (e) {
       alert(e.message)
     }
