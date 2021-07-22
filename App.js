@@ -11,6 +11,7 @@ const config = {
     Home: "",
     Contacts: "contacts",
     Login: "login",
+    Questions: "questions",
     Info: ":categoryId",
     Articles: ":categoryId/articles",
     Videos: ":categoryId/videos",

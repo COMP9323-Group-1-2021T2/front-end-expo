@@ -8,6 +8,7 @@ import { ArticlesScreen } from "./screens/ArticlesScreen";
 import { ContactsScreen } from "./screens/ContactsScreen";
 import { VideosScreen } from "./screens/VideosScreen";
 import { LoginScreen } from "./screens/LoginScreen";
+import { QuestionsScreen } from "./screens/QuestionsScreen";
 import { WatsonChatbot } from "./components/WatsonChatbot";
 
 import { createStackNavigator } from "@react-navigation/stack";
@@ -34,6 +35,7 @@ export const Main = () => {
         <Stack.Screen name="Videos" component={VideosScreen} />
         <Stack.Screen name="Contacts" component={ContactsScreen} />
         <Stack.Screen name="Login" component={LoginScreen} />
+        <Stack.Screen name="Questions" component={QuestionsScreen} />
       </Stack.Navigator>
       <WatsonChatbot />
     </>

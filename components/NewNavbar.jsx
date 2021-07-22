@@ -6,9 +6,9 @@ import { CategoriesContext } from "../contexts/CategoriesContext";
 import { UserContext } from "../contexts/UserContext";
 import { useNavigation } from "@react-navigation/native";
 import { isMobileScreen } from "../core/screen";
-import { Dimensions } from 'react-native';
-const screenWidth = Dimensions.get('screen').width;
-const windowWidth = Dimensions.get('window').width;
+import { Dimensions } from "react-native";
+const screenWidth = Dimensions.get("screen").width;
+const windowWidth = Dimensions.get("window").width;
 
 export const NewNavbar = () => {
   const navigation = useNavigation();
@@ -43,10 +43,15 @@ export const NewNavbar = () => {
     logoutUser();
   };
 
+  const handleQuestionsPress = () => {
+    setParentSelected("");
+    navigation.navigate("Questions");
+  }
+
   let styles = largeStyles;
 
   const isMobile = isMobileScreen();
-  const emergency = <Text style={{color:'#E78587'}}> 000 </Text>
+  const emergency = <Text style={{ color: "#E78587" }}> 000 </Text>;
 
   if (isMobile) {
     styles = { ...styles, ...mobileStyles };
@@ -66,7 +71,10 @@ export const NewNavbar = () => {
           myWellbeing
         </Title>
 
-        <View style={[isMobile ? styles.loginContainer : { display: "none" } ]}>
+        <View style={[isMobile ? styles.loginContainer : { display: "none" }]}>
+          <Button mode="text" onPress={handleQuestionsPress}>
+            Questions
+          </Button>
           {isLoggedIn ? (
             <Button mode="text" onPress={handleLogoutPress}>
               Logout
@@ -107,7 +115,10 @@ export const NewNavbar = () => {
           );
         })}
       </View>
-      <View style={[isMobile ? { display: "none" }: styles.loginContainer ]}>
+      <View style={[isMobile ? { display: "none" } : styles.loginContainer]}>
+        <Button mode="text" onPress={handleQuestionsPress}>
+          Questions
+        </Button>
         {isLoggedIn ? (
           <Button mode="text" onPress={handleLogoutPress}>
             Logout
@@ -120,7 +131,11 @@ export const NewNavbar = () => {
       </View>
       <View style={styles.getHelpContainer}>
         <Menu
-          style={[styles.menu, screenWidth, windowWidth < 400 ? styles.mobileMenu : styles.menu]}
+          style={[
+            styles.menu,
+            screenWidth,
+            windowWidth < 400 ? styles.mobileMenu : styles.menu,
+          ]}
           visible={parentSelected === "get-help"}
           onDismiss={() => setParentSelected("")}
           anchor={
@@ -136,15 +151,24 @@ export const NewNavbar = () => {
             titleStyle={{
               color: "#d64204",
             }}
-            style={{marginTop:"10%"}}
+            style={{ marginTop: "10%" }}
             onPress={() => {
               window.open("https://www.triplezero.gov.au/", "_blank");
             }}
-
-            title={"If you or someone close to you is\nin distress or immediate danger," + `\n` + "dial" + " 000 " + "as soon as possible."}
-          >
-          </Menu.Item>
-          <Menu.Item style={{marginTop:"10%"}} onPress={handleContacts} title="Contacts" icon="phone"/>
+            title={
+              "If you or someone close to you is\nin distress or immediate danger," +
+              `\n` +
+              "dial" +
+              " 000 " +
+              "as soon as possible."
+            }
+          ></Menu.Item>
+          <Menu.Item
+            style={{ marginTop: "10%" }}
+            onPress={handleContacts}
+            title="Contacts"
+            icon="phone"
+          />
         </Menu>
       </View>
     </View>
@@ -161,6 +185,7 @@ const largeStyles = StyleSheet.create({
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
+    flexDirection: "row",
   },
   title: {
     fontSize: 30,
@@ -177,7 +202,7 @@ const largeStyles = StyleSheet.create({
     marginTop: 50,
   },
   mobileMenu: {
-    marginLeft:'25%'
+    marginLeft: "25%",
   },
   titleContainer: {
     paddingVertical: 10,
@@ -207,7 +232,9 @@ const mobileStyles = StyleSheet.create({
     flexDirection: "column",
     backgroundColor: "white",
   },
-  loginContainer: {},
+  loginContainer: {
+    flexDirection: "row",
+  },
   menus: {
     flexDirection: "column",
     flexGrow: 1,
