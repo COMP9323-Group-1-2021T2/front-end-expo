@@ -1,9 +1,13 @@
 import React, { useContext, useState, useEffect } from "react";
-import { getQuestions as apiGetQuestions } from "../api";
+import {
+  getQuestions as apiGetQuestions,
+  createQuestion as apiCreateQuestion,
+} from "../api";
 import { UserContext } from "./UserContext";
 
 export const QuestionsContext = React.createContext({
   questions: [],
+  createQuestion: () => {},
 });
 
 export const QuestionsContainer = ({ children }) => {
@@ -12,12 +16,18 @@ export const QuestionsContainer = ({ children }) => {
 
   useEffect(() => {
     (async () => {
-      setQuestions(await apiGetQuestions(accessToken))
+      setQuestions(await apiGetQuestions(accessToken));
     })();
-  }, [accessToken])
+  }, [accessToken]);
+
+  const createQuestion = async (question) => {
+    await apiCreateQuestion(question);
+    return;
+  };
 
   const contextValue = {
     questions,
+    createQuestion,
   };
 
   return (

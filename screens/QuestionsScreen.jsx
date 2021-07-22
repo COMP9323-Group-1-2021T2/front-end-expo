@@ -6,7 +6,7 @@ import { AskQuestionModal } from "../components/AskQuestionModal";
 import { QuestionsContext } from "../contexts/QuestionsContext";
 
 export const QuestionsScreen = ({ navigation }) => {
-  const { questions } = useContext(QuestionsContext);
+  const { questions, createQuestion } = useContext(QuestionsContext);
 
   const [isModalVisible, setIsModalVisible] = useState(false);
 
@@ -18,9 +18,13 @@ export const QuestionsScreen = ({ navigation }) => {
     setIsModalVisible(true);
   };
 
-  const handleOnModalSubmit = (question) => {
-    console.log(question);
-    setIsModalVisible(false);
+  const handleOnModalSubmit = async (question) => {
+    try {
+      await createQuestion(question);
+      setIsModalVisible(false);
+    } catch (e) {
+      alert(e.message)
+    }
   };
 
   return (

@@ -237,3 +237,23 @@ export const getQuestions = async (accessToken) => {
 
   return jsonData.data;
 }
+
+export const createQuestion = async (question) => {
+  const res = await fetch(`${baseUrl}/questions`, {
+    headers: {
+      "Content-Type": "application/json",
+    },
+    method: "POST",
+    body: JSON.stringify({
+      question,
+    }),
+  });
+
+  const jsonData = await res.json();
+
+  if (!res.ok) {
+    throw new Error(`Failed to create a question`);
+  }
+
+  return jsonData.data;
+};
