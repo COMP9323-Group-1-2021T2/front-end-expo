@@ -21,7 +21,6 @@ export const AskQuestionModal = ({ onSubmit }) => {
       <View style={styles.content}>
         <Title style={styles.title}>Ask a Question</Title>
         <TextInput
-          label="Title"
           mode="outlined"
           value={question}
           style={styles.input}

@@ -4,11 +4,14 @@ import { List, Title, Button, Modal } from "react-native-paper";
 import { NewNavbar } from "../components/NewNavbar";
 import { AskQuestionModal } from "../components/AskQuestionModal";
 import { QuestionsContext } from "../contexts/QuestionsContext";
+import { UserContext } from "../contexts/UserContext";
 import { NotificationContext } from "../contexts/NotificationContext";
+import { QuestionAccordion } from "../components/QuestionAccordion";
 
 export const QuestionsScreen = ({ navigation }) => {
-  const { questions, createQuestion } = useContext(QuestionsContext);
+  const { questions, createQuestion, answerQuestion } = useContext(QuestionsContext);
   const { setNotification } = useContext(NotificationContext);
+  const { isLoggedIn } = useContext(UserContext);
 
   const [isModalVisible, setIsModalVisible] = useState(false);
 
@@ -24,9 +27,18 @@ export const QuestionsScreen = ({ navigation }) => {
     try {
       await createQuestion(question);
       setIsModalVisible(false);
-      setNotification("Successfully submitted your question")
+      setNotification("Successfully submitted your question");
     } catch (e) {
-      alert(e.message)
+      alert(e.message);
+    }
+  };
+
+  const handleOnAnswerSave = async (questionId, answer) => {
+    try {
+      await answerQuestion(questionId, answer);
+      setNotification("Successfully submitted your answer");
+    } catch (e) {
+      alert(e.message);
     }
   };
 
@@ -36,21 +48,17 @@ export const QuestionsScreen = ({ navigation }) => {
       <View style={styles.contentContainer}>
         <View style={styles.top}>
           <Title>Questions</Title>
-          <Button mode="contained" onPress={handleAskAQuestionOnPress}>
-            Ask a Question
-          </Button>
+          {!isLoggedIn && (
+            <Button mode="contained" onPress={handleAskAQuestionOnPress}>
+              Ask a Question
+            </Button>
+          )}
         </View>
 
         <View style={styles.listContainer}>
           <List.Section>
             {questions.map((q) => (
-              <List.Accordion
-                key={q.id}
-                style={styles.accordion}
-                title={q.question}
-              >
-                <List.Item title={q.answer} />
-              </List.Accordion>
+              <QuestionAccordion key={q.id} question={q} isAdmin={isLoggedIn} onAnswerSave={handleOnAnswerSave} />
             ))}
           </List.Section>
         </View>
@@ -76,10 +84,6 @@ const styles = StyleSheet.create({
   listContainer: {
     width: "80%",
   },
-  accordion: {
-    backgroundColor: "white",
-    marginTop: 20,
-  },
   top: {
     display: "flex",
     flexDirection: "row",
@@ -87,6 +91,6 @@ const styles = StyleSheet.create({
     width: "80%",
   },
   modal: {
-    boxShadow: 'none',
+    boxShadow: "none",
   },
 });

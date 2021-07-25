@@ -257,3 +257,24 @@ export const createQuestion = async (question) => {
 
   return jsonData.data;
 };
+
+export const answerQuestion = async (accessToken, questionId, answer) => {
+  const res = await fetch(`${baseUrl}/questions/${questionId}/answer`, {
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${accessToken}`,
+    },
+    method: "POST",
+    body: JSON.stringify({
+      answer,
+    }),
+  });
+
+  const jsonData = await res.json();
+
+  if (!res.ok) {
+    throw new Error(`Failed to answer a question`);
+  }
+
+  return jsonData.data;
+};
