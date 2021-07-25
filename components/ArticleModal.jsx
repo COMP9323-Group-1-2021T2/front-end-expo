@@ -16,7 +16,6 @@ export const ArticleModal = ({ article, onSave, onDelete, onCancel }) => {
   if (isMobileScreen()) {
     styles = { ...styles, ...mobileStyles };
   }
-
   useEffect(() => {
     if (article) {
       setModalTitle("Update article");
