@@ -3,6 +3,7 @@ import { View, StyleSheet, TouchableOpacity } from "react-native";
 import { Modal, Text } from "react-native-paper";
 import { NewNavbar } from "../components/NewNavbar";
 import { CategoriesContext } from "../contexts/CategoriesContext";
+import { NotificationContext } from "../contexts/NotificationContext";
 import { ContentContainer } from "../components/ContentContainer";
 import { Video } from "../components/Video";
 import { isMobileScreen } from "../core/screen";
@@ -20,8 +21,9 @@ export const VideosScreen = ({ navigation, route }) => {
     deleteVideo,
   } = useContext(CategoriesContext);
   const { isLoggedIn } = useContext(UserContext);
-  const [isModalVisible, setIsModalVisible] = useState(false);
+  const { setNotification } = useContext(NotificationContext);
   const [selectedVideo, setSelectedVideo] = useState(undefined);
+  const [isModalVisible, setIsModalVisible] = useState(false);
 
   let styles = largeStyles;
 
@@ -40,7 +42,7 @@ export const VideosScreen = ({ navigation, route }) => {
     setIsModalVisible(true);
   };
 
-  const handleOnEdit = (video) => {
+  const handleOnEdit = async (video) => {
     setSelectedVideo(video);
     setIsModalVisible(true);
   };
@@ -54,8 +56,9 @@ export const VideosScreen = ({ navigation, route }) => {
     try {
       await deleteVideo(selectedVideo.id);
       handleOnModalDismiss();
+      setNotification("Successfully deleted the video");
     } catch (e) {
-      alert(e.message);
+      setNotification("Failed to delete the video");
     }
   };
 
@@ -69,6 +72,8 @@ export const VideosScreen = ({ navigation, route }) => {
           image,
           description,
         });
+
+        setNotification("Successfully updated a video");
       } else {
         await createVideo({
           title,
@@ -76,11 +81,12 @@ export const VideosScreen = ({ navigation, route }) => {
           image,
           description,
         });
+        setNotification("Successfully added a video");
       }
 
       handleOnModalDismiss();
     } catch (e) {
-      alert(e.message);
+      setNotification("Failed to save a video");
     }
   };
 

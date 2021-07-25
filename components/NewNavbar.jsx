@@ -3,6 +3,7 @@ import { View, StyleSheet } from "react-native";
 import { Headline, Menu, Button, Title, IconButton } from "react-native-paper";
 import { theme } from "../core/theme";
 import { CategoriesContext } from "../contexts/CategoriesContext";
+import { NotificationContext } from "../contexts/NotificationContext";
 import { UserContext } from "../contexts/UserContext";
 import { useNavigation } from "@react-navigation/native";
 import { isMobileScreen } from "../core/screen";
@@ -14,6 +15,7 @@ export const NewNavbar = () => {
   const navigation = useNavigation();
   const { categoriesMap } = useContext(CategoriesContext);
   const { isLoggedIn, logoutUser } = useContext(UserContext);
+  const { setNotification } = useContext(NotificationContext);
   const parentIds = Object.keys(categoriesMap);
   const [parentSelected, setParentSelected] = useState("");
   const [isOpen, setIsOpen] = useState(false);
@@ -38,9 +40,14 @@ export const NewNavbar = () => {
     navigation.navigate("Login");
   };
 
-  const handleLogoutPress = () => {
+  const handleLogoutPress = async () => {
     setParentSelected("");
-    logoutUser();
+    try {
+      await logoutUser();
+      setNotification("Successfully logged out");
+    } catch {
+      setNotification("Failed to logout");
+    }
   };
 
   const handleQuestionsPress = () => {

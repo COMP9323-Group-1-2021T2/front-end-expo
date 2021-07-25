@@ -3,6 +3,7 @@ import { View, StyleSheet } from "react-native";
 import { TextInput, Button, Title } from "react-native-paper";
 import { isMobileScreen } from "../core/screen";
 import { UserContext } from "../contexts/UserContext";
+import { NotificationContext } from "../contexts/NotificationContext";
 import { useNavigation } from "@react-navigation/native";
 
 export const LoginScreen = () => {
@@ -11,6 +12,8 @@ export const LoginScreen = () => {
   const [isLoggingIn, setIsLoggingIn] = useState(false);
 
   const { loginUser } = useContext(UserContext);
+  const { setNotification } = useContext(NotificationContext);
+
   const navigation = useNavigation();
 
   let styles = largeStyles;
@@ -25,8 +28,9 @@ export const LoginScreen = () => {
     try {
       await loginUser(email, password);
       navigation.navigate("Home");
+      setNotification("Successfully logged in");
     } catch (e) {
-      alert(e.message);
+      setNotification("Failed to log in, check your credentials and try again");
     } finally {
       setIsLoggingIn(false);
     }

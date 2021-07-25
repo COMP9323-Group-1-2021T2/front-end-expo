@@ -3,6 +3,7 @@ import { View, StyleSheet, TouchableOpacity } from "react-native";
 import { Modal } from "react-native-paper";
 import { NewNavbar } from "../components/NewNavbar";
 import { CategoriesContext } from "../contexts/CategoriesContext";
+import { NotificationContext } from "../contexts/NotificationContext";
 import { ContentContainer } from "../components/ContentContainer";
 import { AddCard } from "../components/AddCard";
 import { Article } from "../components/Article";
@@ -20,6 +21,7 @@ export const ArticlesScreen = ({ navigation, route }) => {
     deleteArticle,
   } = useContext(CategoriesContext);
   const { isLoggedIn } = useContext(UserContext);
+  const { setNotification } = useContext(NotificationContext);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [selectedArticle, setSelectedArticle] = useState(undefined);
 
@@ -54,8 +56,9 @@ export const ArticlesScreen = ({ navigation, route }) => {
     try {
       await deleteArticle(selectedArticle.id);
       handleOnModalDismiss();
+      setNotification("Successfully deleted the article");
     } catch (e) {
-      alert(e.message);
+      setNotification("Failed to delete the article");
     }
   };
 
@@ -69,6 +72,7 @@ export const ArticlesScreen = ({ navigation, route }) => {
           image,
           description,
         });
+        setNotification("Successfully updated the article");
       } else {
         await createArticle({
           title,
@@ -76,11 +80,12 @@ export const ArticlesScreen = ({ navigation, route }) => {
           image,
           description,
         });
+        setNotification("Successfully added an article");
       }
 
       handleOnModalDismiss();
     } catch (e) {
-      alert(e.message);
+      setNotification("Failed to save an article");
     }
   };
 

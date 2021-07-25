@@ -29,7 +29,7 @@ export const QuestionsScreen = ({ navigation }) => {
       setIsModalVisible(false);
       setNotification("Successfully submitted your question");
     } catch (e) {
-      alert(e.message);
+      setNotification("Failed to submitted your question");
     }
   };
 
@@ -38,7 +38,7 @@ export const QuestionsScreen = ({ navigation }) => {
       await answerQuestion(questionId, answer);
       setNotification("Successfully submitted your answer");
     } catch (e) {
-      alert(e.message);
+      setNotification("Failed to submit your answer");
     }
   };
 
