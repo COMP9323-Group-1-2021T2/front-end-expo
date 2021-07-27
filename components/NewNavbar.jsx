@@ -32,7 +32,7 @@ export const NewNavbar = () => {
   };
   const handleOnTitlePress = () => {
     setParentSelected("");
-    navigation.navigate("");
+    navigation.navigate("Home");
   };
 
   const handleLoginPress = () => {
