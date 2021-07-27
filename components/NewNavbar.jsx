@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, Image } from "react-native";
 import { Headline, Menu, Button, Title, IconButton } from "react-native-paper";
 import { theme } from "../core/theme";
 import { CategoriesContext } from "../contexts/CategoriesContext";
@@ -74,11 +74,15 @@ export const NewNavbar = () => {
           style={[isMobile ? {} : { display: "none" }]}
           onPress={() => setIsOpen(!isOpen)}
         />
+
+
+        <Image source={require('../assets/myWellbeing.PNG')} style={{width:'20%', height:'100%'}} resizeMode="contain"/>
         <Title style={styles.title} onPress={handleOnTitlePress}>
           myWellbeing
         </Title>
+     
 
-        <View style={[isMobile ? styles.loginContainer : { display: "none" }]}>
+        <View style={[isMobile  ? styles.loginContainer : { display: "none" }]}>
           <Button mode="text" onPress={handleQuestionsPress}>
             Questions
           </Button>
@@ -123,15 +127,15 @@ export const NewNavbar = () => {
         })}
       </View>
       <View style={[isMobile ? { display: "none" } : styles.loginContainer]}>
-        <Button mode="text" onPress={handleQuestionsPress}>
+        <Button mode="text" onPress={handleQuestionsPress} labelStyle={{fontSize:'1.1vw'}}>
           Questions
         </Button>
         {isLoggedIn ? (
-          <Button mode="text" onPress={handleLogoutPress}>
+          <Button mode="text" onPress={handleLogoutPress} labelStyle={{fontSize:'1.1vw'}}>
             Logout
           </Button>
         ) : (
-          <Button mode="text" onPress={handleLoginPress}>
+          <Button mode="text" onPress={handleLoginPress} labelStyle={{fontSize:'1.1vw'}}>
             Login
           </Button>
         )}
@@ -147,10 +151,10 @@ export const NewNavbar = () => {
           onDismiss={() => setParentSelected("")}
           anchor={
             <Title
-              style={styles.getHelpText}
+              style={[isMobile ? {color:'white'}: styles.getHelpText]}
               onPress={() => setParentSelected("get-help")}
             >
-              Get Help Now
+              GET HELP NOW
             </Title>
           }
         >
@@ -201,9 +205,11 @@ const largeStyles = StyleSheet.create({
     display: "flex",
     flexDirection: "row",
     flexGrow: 1,
+    fontSize: '2em'
   },
   menuTitle: {
     marginRight: 20,
+    fontSize:"1.3vw"
   },
   menu: {
     marginTop: 50,
@@ -216,9 +222,10 @@ const largeStyles = StyleSheet.create({
     paddingHorizontal: 20,
     borderRightWidth: 2,
     borderRightColor: "black",
-    marginRight: 20,
     display: "flex",
     flexDirection: "row",
+    width:"30%",
+    maxWidth: '270px',
   },
   menuItem: {
     padding: 10,
@@ -227,9 +234,11 @@ const largeStyles = StyleSheet.create({
   getHelpContainer: {
     padding: 10,
     backgroundColor: theme.colors.primary,
+    width:'200'
   },
   getHelpText: {
     color: "white",
+    fontSize: "1.1vw"
   },
 });
 

@@ -7,6 +7,7 @@ import { QuestionsContext } from "../contexts/QuestionsContext";
 import { UserContext } from "../contexts/UserContext";
 import { NotificationContext } from "../contexts/NotificationContext";
 import { QuestionAccordion } from "../components/QuestionAccordion";
+import ScrollBox from "react-responsive-scrollbox";
 
 export const QuestionsScreen = ({ navigation }) => {
   const { questions, createQuestion, answerQuestion } = useContext(QuestionsContext);
@@ -45,31 +46,35 @@ export const QuestionsScreen = ({ navigation }) => {
   return (
     <View>
       <NewNavbar />
-      <View style={styles.contentContainer}>
-        <View style={styles.top}>
-          <Title>Questions</Title>
-          {!isLoggedIn && (
-            <Button mode="contained" onPress={handleAskAQuestionOnPress}>
-              Ask a Question
-            </Button>
-          )}
-        </View>
+      <ScrollBox style={{height:'80vh', width:'80vw', margin:'auto'}}> 
+          <View style={{paddingBottom:'20vh'}}>
+            <View style={styles.contentContainer}>
+              <View style={styles.top}>
+                <Title>Questions</Title>
+                {!isLoggedIn && (
+                  <Button mode="contained" onPress={handleAskAQuestionOnPress}>
+                    Ask a Question
+                  </Button>
+                )}
+              </View>
 
-        <View style={styles.listContainer}>
-          <List.Section>
-            {questions.map((q) => (
-              <QuestionAccordion key={q.id} question={q} isAdmin={isLoggedIn} onAnswerSave={handleOnAnswerSave} />
-            ))}
-          </List.Section>
-        </View>
-        <Modal
-          style={styles.modal}
-          visible={isModalVisible}
-          onDismiss={handleOnModalDismiss}
-        >
-          <AskQuestionModal onSubmit={handleOnModalSubmit} />
-        </Modal>
-      </View>
+              <View style={styles.listContainer}>
+                <List.Section>
+                  {questions.map((q) => (
+                    <QuestionAccordion key={q.id} question={q} isAdmin={isLoggedIn} onAnswerSave={handleOnAnswerSave} />
+                  ))}
+                </List.Section>
+              </View>
+              <Modal
+                style={styles.modal}
+                visible={isModalVisible}
+                onDismiss={handleOnModalDismiss}
+              >
+                <AskQuestionModal onSubmit={handleOnModalSubmit} />
+              </Modal>
+            </View>
+          </View>
+        </ScrollBox>
     </View>
   );
 };

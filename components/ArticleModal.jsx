@@ -12,7 +12,6 @@ export const ArticleModal = ({ article, onSave, onDelete, onCancel }) => {
   const [description, setDescription] = useState("");
 
   let styles = largeStyles;
-
   if (isMobileScreen()) {
     styles = { ...styles, ...mobileStyles };
   }

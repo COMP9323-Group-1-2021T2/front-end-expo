@@ -1,17 +1,17 @@
 {
   "files": {
-    "app.js": "/static/js/app.e93bba2a.chunk.js",
-    "app.js.map": "/static/js/app.e93bba2a.chunk.js.map",
+    "app.js": "/static/js/app.1ed212ce.chunk.js",
+    "app.js.map": "/static/js/app.1ed212ce.chunk.js.map",
     "runtime~app.js": "/static/js/runtime~app.2e9f1821.js",
     "runtime~app.js.map": "/static/js/runtime~app.2e9f1821.js.map",
-    "static/js/2.e83ca7a9.chunk.js": "/static/js/2.e83ca7a9.chunk.js",
-    "static/js/2.e83ca7a9.chunk.js.map": "/static/js/2.e83ca7a9.chunk.js.map",
+    "static/js/2.1f04ae3b.chunk.js": "/static/js/2.1f04ae3b.chunk.js",
+    "static/js/2.1f04ae3b.chunk.js.map": "/static/js/2.1f04ae3b.chunk.js.map",
     "fonts/FontAwesome.ttf": "/./fonts/FontAwesome.ttf",
     "fonts/MaterialCommunityIcons.ttf": "/./fonts/MaterialCommunityIcons.ttf",
     "index.html": "/index.html",
     "manifest.json": "/manifest.json",
     "serve.json": "/serve.json",
-    "static/js/2.e83ca7a9.chunk.js.LICENSE.txt": "/static/js/2.e83ca7a9.chunk.js.LICENSE.txt",
+    "static/js/2.1f04ae3b.chunk.js.LICENSE.txt": "/static/js/2.1f04ae3b.chunk.js.LICENSE.txt",
     "static/media/0.PNG": "/static/media/0.379aefa2.PNG",
     "static/media/1.PNG": "/static/media/1.d06068cc.PNG",
     "static/media/10.PNG": "/static/media/10.424241f2.PNG",
@@ -26,11 +26,12 @@
     "static/media/7.PNG": "/static/media/7.543b3754.PNG",
     "static/media/8.PNG": "/static/media/8.db7bf240.PNG",
     "static/media/9.PNG": "/static/media/9.51a3543c.PNG",
+    "static/media/myWellbeing.PNG": "/static/media/myWellbeing.f88d54e3.PNG",
     "static/media/phone.PNG": "/static/media/phone.6fa9880d.PNG"
   },
   "entrypoints": [
     "static/js/runtime~app.2e9f1821.js",
-    "static/js/2.e83ca7a9.chunk.js",
-    "static/js/app.e93bba2a.chunk.js"
+    "static/js/2.1f04ae3b.chunk.js",
+    "static/js/app.1ed212ce.chunk.js"
   ]
 }
