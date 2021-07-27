@@ -53,7 +53,7 @@ export const NewNavbar = () => {
   const handleQuestionsPress = () => {
     setParentSelected("");
     navigation.navigate("Questions");
-  }
+  };
 
   let styles = largeStyles;
 
@@ -75,27 +75,14 @@ export const NewNavbar = () => {
           onPress={() => setIsOpen(!isOpen)}
         />
 
-
-        <Image source={require('../assets/myWellbeing.PNG')} style={{width:'20%', height:'100%'}} resizeMode="contain"/>
+        <Image
+          source={require("../assets/myWellbeing.PNG")}
+          style={{ width: 50, height: "80%" }}
+          resizeMode="contain"
+        />
         <Title style={styles.title} onPress={handleOnTitlePress}>
           myWellbeing
         </Title>
-     
-
-        <View style={[isMobile  ? styles.loginContainer : { display: "none" }]}>
-          <Button mode="text" onPress={handleQuestionsPress}>
-            Questions
-          </Button>
-          {isLoggedIn ? (
-            <Button mode="text" onPress={handleLogoutPress}>
-              Logout
-            </Button>
-          ) : (
-            <Button mode="text" onPress={handleLoginPress}>
-              Login
-            </Button>
-          )}
-        </View>
       </View>
       <View style={[styles.menus, isOpen ? {} : styles.menusHiddenMobile]}>
         {parentIds.map((pId) => {
@@ -125,17 +112,37 @@ export const NewNavbar = () => {
             </View>
           );
         })}
+        <View style={styles.buttonsInMenu}>
+          <Button mode="text" onPress={handleQuestionsPress}>
+            Questions
+          </Button>
+          {isLoggedIn ? (
+            <Button mode="text" onPress={handleLogoutPress}>
+              Logout
+            </Button>
+          ) : (
+            <Button
+              mode="text"
+              onPress={handleLoginPress}
+            >
+              Login
+            </Button>
+          )}
+        </View>
       </View>
       <View style={[isMobile ? { display: "none" } : styles.loginContainer]}>
-        <Button mode="text" onPress={handleQuestionsPress} labelStyle={{fontSize:'1.1vw'}}>
+        <Button mode="text" onPress={handleQuestionsPress}>
           Questions
         </Button>
         {isLoggedIn ? (
-          <Button mode="text" onPress={handleLogoutPress} labelStyle={{fontSize:'1.1vw'}}>
+          <Button mode="text" onPress={handleLogoutPress}>
             Logout
           </Button>
         ) : (
-          <Button mode="text" onPress={handleLoginPress} labelStyle={{fontSize:'1.1vw'}}>
+          <Button
+            mode="text"
+            onPress={handleLoginPress}
+          >
             Login
           </Button>
         )}
@@ -151,7 +158,7 @@ export const NewNavbar = () => {
           onDismiss={() => setParentSelected("")}
           anchor={
             <Title
-              style={[isMobile ? {color:'white'}: styles.getHelpText]}
+              style={[isMobile ? { color: "white" } : styles.getHelpText]}
               onPress={() => setParentSelected("get-help")}
             >
               GET HELP NOW
@@ -205,11 +212,11 @@ const largeStyles = StyleSheet.create({
     display: "flex",
     flexDirection: "row",
     flexGrow: 1,
-    fontSize: '2em'
+    fontSize: "2em",
   },
   menuTitle: {
     marginRight: 20,
-    fontSize:"1.3vw"
+    fontSize: "1.3vw",
   },
   menu: {
     marginTop: 50,
@@ -224,8 +231,8 @@ const largeStyles = StyleSheet.create({
     borderRightColor: "black",
     display: "flex",
     flexDirection: "row",
-    width:"30%",
-    maxWidth: '270px',
+    width: "30%",
+    maxWidth: "270px",
   },
   menuItem: {
     padding: 10,
@@ -234,11 +241,14 @@ const largeStyles = StyleSheet.create({
   getHelpContainer: {
     padding: 10,
     backgroundColor: theme.colors.primary,
-    width:'200'
+    width: "200",
   },
   getHelpText: {
     color: "white",
-    fontSize: "1.1vw"
+    fontSize: "1.1vw",
+  },
+  buttonsInMenu: {
+    display: "none",
   },
 });
 
@@ -281,5 +291,11 @@ const mobileStyles = StyleSheet.create({
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
+  },
+  buttonsInMenu: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "flex-start",
+    paddingLeft: 25,
   },
 });
