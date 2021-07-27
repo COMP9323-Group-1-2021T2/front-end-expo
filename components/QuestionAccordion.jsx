@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { List, Title, Button, Modal, TextInput } from "react-native-paper";
+import { List, Title, Button, Modal, TextInput, Paragraph } from "react-native-paper";
 import { StyleSheet, View } from "react-native";
 
 export const QuestionAccordion = ({ question, isAdmin, onAnswerSave }) => {
@@ -7,14 +7,22 @@ export const QuestionAccordion = ({ question, isAdmin, onAnswerSave }) => {
   const withCheckIcon = question.answer && isAdmin;
 
   const handleOnAnswerSave = () => {
-    onAnswerSave(question.id, answer)
+    onAnswerSave(question.id, answer);
   };
+
+  let additionalProps = {};
+
+  if (isAdmin) {
+    additionalProps = {
+      left: (props) => withCheckIcon ? <List.Icon {...props} icon="check" /> : null
+    }
+  }
 
   return (
     <List.Accordion
       style={styles.accordion}
       title={question.question}
-      left={(props) => withCheckIcon ? <List.Icon {...props} icon="check" /> : null}
+      {...additionalProps}
     >
       {isAdmin ? (
         <View style={styles.adminItemContainer}>
@@ -27,11 +35,13 @@ export const QuestionAccordion = ({ question, isAdmin, onAnswerSave }) => {
             numberOfLines={4}
           />
           <Button mode="text" onPress={handleOnAnswerSave}>
-              Save
-            </Button>
+            Save
+          </Button>
         </View>
       ) : (
-        <List.Item title={question.answer} />
+        <View style={styles.answer}>
+          <Paragraph>{question.answer}</Paragraph>
+        </View>
       )}
     </List.Accordion>
   );
@@ -52,5 +62,8 @@ const styles = StyleSheet.create({
   adminInput: {
     backgroundColor: "white",
     flexGrow: 1,
+  },
+  answer: {
+    padding: 10,
   },
 });

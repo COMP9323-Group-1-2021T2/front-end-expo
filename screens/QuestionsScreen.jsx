@@ -8,6 +8,8 @@ import { UserContext } from "../contexts/UserContext";
 import { NotificationContext } from "../contexts/NotificationContext";
 import { QuestionAccordion } from "../components/QuestionAccordion";
 import ScrollBox from "react-responsive-scrollbox";
+import { isMobileScreen } from "../core/screen";
+
 
 export const QuestionsScreen = ({ navigation }) => {
   const { questions, createQuestion, answerQuestion } = useContext(QuestionsContext);
@@ -15,6 +17,13 @@ export const QuestionsScreen = ({ navigation }) => {
   const { isLoggedIn } = useContext(UserContext);
 
   const [isModalVisible, setIsModalVisible] = useState(false);
+
+  let styles = largeStyles;
+  const isMobile = isMobileScreen();
+
+  if (isMobile) {
+    styles = { ...styles, ...mobileStyles };
+  }
 
   const handleOnModalDismiss = () => {
     setIsModalVisible(false);
@@ -79,7 +88,7 @@ export const QuestionsScreen = ({ navigation }) => {
   );
 };
 
-const styles = StyleSheet.create({
+const largeStyles = StyleSheet.create({
   contentContainer: {
     paddingTop: 50,
     display: "flex",
@@ -97,5 +106,17 @@ const styles = StyleSheet.create({
   },
   modal: {
     boxShadow: "none",
+  },
+});
+
+const mobileStyles = StyleSheet.create({
+  top: {
+    display: "flex",
+    flexdirection: "column",
+    alignItems: "flex-start",
+    width: "100%",
+  },
+  listContainer: {
+    width: "100%",
   },
 });
