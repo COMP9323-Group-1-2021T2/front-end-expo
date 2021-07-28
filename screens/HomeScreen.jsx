@@ -46,7 +46,7 @@ export const HomeScreen = ({ navigation }) => {
                       <Text style={{textAlign:'left', height:'fit-content', flex:'2'}}> Work health and safety (WHS) – sometimes called occupational health and safety (OH&S) – involves the management of risks to the health and safety of everyone in your workplace. This includes the health and safety of anyone who does work for you as well as your customers, visitors and suppliers.
                       </Text>
                       <View style={[isMobile ? {marginTop:'5%'} : styles.findOutMoreContainer]}> 
-                        <Button title="Find out more" style={styles.findOutMore} labelStyle={{color:'white'}}> Find out more </Button>
+                        <Button style={styles.findOutMore} labelStyle={{color:'white'}} onPress={() => {navigation.navigate("Info", {categoryId: "ohs_starting_with_safety"})}}> Find out more </Button>
                       </View>
                     </View>
 
@@ -56,7 +56,7 @@ export const HomeScreen = ({ navigation }) => {
                       <Text style={{textAlign:'left', height:'fit-content', flex:'2'}}> Mental health includes our emotional, psychological, and social well-being. It affects how we think, feel, and act. It also helps determine how we handle stress, relate to others, and make choices. Mental health is important at every stage of life, from childhood and adolescence through adulthood.
                       </Text>
                       <View style={[isMobile ? {marginTop:'5%'} : styles.findOutMoreContainer]}> 
-                        <Button title="Find out more" style={styles.findOutMore} labelStyle={{color:'white'}}> Find out more </Button>
+                        <Button style={styles.findOutMore} labelStyle={{color:'white'}} onPress={() => {navigation.navigate("Info", {categoryId: "mental_wellbeing"})}}> Find out more </Button>
                       </View>
                     </View>
 
@@ -66,7 +66,7 @@ export const HomeScreen = ({ navigation }) => {
                       <Text style={{textAlign:'left', height:'fit-content', flex:'2'}}> A balanced diet, proper sleep, and cutting down unhealthy habits such as smoking, alcohol, and drugs are some of the key physical health factors that can promote mental wellbeing. Some of the things that can affect mental wellbeing are stress, working too much, and being too inactive.
                       </Text>
                       <View style={[isMobile ? {marginTop:'5%'} : styles.findOutMoreContainer]}> 
-                        <Button title="Find out more" style={styles.findOutMore} labelStyle={{color:'white'}}> Find out more </Button>
+                        <Button style={styles.findOutMore} labelStyle={{color:'white'}} onPress={() => {navigation.navigate("Info", {categoryId: "physical_being_healthy"})}}> Find out more </Button>
                       </View>
                     </View>
 
@@ -76,7 +76,7 @@ export const HomeScreen = ({ navigation }) => {
                       <Text style={{textAlign:'left', height:'fit-content', flex:'2'}}> In an emergency, call 000 immediately. If the situation is urgent and you’re concerned you, or someone else, is in immediate danger do not leave the person alone, unless you are concerned for your own safety.
                       </Text>
                       <View style={[isMobile ? {marginTop:'5%'} : styles.findOutMoreContainer]}> 
-                        <Button title="Find out more" style={styles.findOutMore} labelStyle={{color:'white'}}> Find out more </Button>
+                        <Button style={styles.findOutMore} labelStyle={{color:'white'}} onPress={() => {window.open("https://www.triplezero.gov.au/")}}> Find out more </Button>
                       </View>
                     </View>
 

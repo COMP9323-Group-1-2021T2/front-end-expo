@@ -102,7 +102,7 @@ const largeStyles = StyleSheet.create({
   },
   articleContainer: {
     marginBottom: 20,
-    width: "19%",
+    width: "31%",
   },
   title: {
     marginBottom: 20,

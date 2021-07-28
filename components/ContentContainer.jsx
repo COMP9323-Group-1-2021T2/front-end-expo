@@ -56,8 +56,8 @@ export const ContentContainer = ({ children }) => {
           </View>
         </View>
 
-        <ScrollBox style={{height:'80vh', width:'80vw', margin:'auto'}}> 
-          <View style={{paddingBottom:'20vh'}}>
+        <ScrollBox style={{height:'75vh', width:'80vw', margin:'auto'}}> 
+          <View style={{marginBottom:'20vh'}}>
               {children} 
           </View>
         </ScrollBox>
