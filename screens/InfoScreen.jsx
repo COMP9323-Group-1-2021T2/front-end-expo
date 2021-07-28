@@ -29,7 +29,7 @@ export const InfoScreen = ({ navigation, route }) => {
 
   useEffect(() => {
     if (articles.length !== 0) {
-      setShownArticles(articles.slice(0, 5));
+      setShownArticles(articles.slice(0, 3));
     }
   }, [articles]);
 
