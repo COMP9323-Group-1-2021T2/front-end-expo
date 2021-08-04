@@ -53,6 +53,10 @@ export const VideosScreen = ({ navigation, route }) => {
   };
 
   const handleOnDelete = async () => {
+    if (!window.confirm("Are you sure you want to delete this video?")) {
+      return;
+    }
+
     try {
       await deleteVideo(selectedVideo.id);
       handleOnModalDismiss();

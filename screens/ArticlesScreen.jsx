@@ -53,6 +53,10 @@ export const ArticlesScreen = ({ navigation, route }) => {
   };
 
   const handleOnDelete = async () => {
+    if (!window.confirm("Are you sure you want to delete this article?")) {
+      return;
+    }
+
     try {
       await deleteArticle(selectedArticle.id);
       handleOnModalDismiss();
