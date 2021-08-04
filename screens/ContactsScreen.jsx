@@ -1,4 +1,5 @@
-import React, { useContext, useEffect }  from "react";
+import React, { useCallback }  from "react";
+import { useFocusEffect } from '@react-navigation/native';
 import { View, StyleSheet, Image } from "react-native";
 import { Text, Card, Title, Button, Paragraph } from "react-native-paper";
 import { NewNavbar } from "../components/NewNavbar";
@@ -10,6 +11,24 @@ const screenWidth = Dimensions.get('screen').width;
 const windowWidth = Dimensions.get('window').width;
 
 export const ContactsScreen = () => {
+  const addClassToShowWatson = () => {
+    const body = document.body;
+    body.classList.add("show-watson");
+    body.classList.remove("hide-watson");
+
+  };
+
+  const removeClassToShowWatson = () => {
+    const body = document.body;
+    body.classList.remove("show-watson");
+    body.classList.add("hide-watson");
+  };
+
+
+  useFocusEffect(() => {
+    addClassToShowWatson()
+    return () => removeClassToShowWatson();
+  });
 
   const contacts = [
 
@@ -28,6 +47,7 @@ export const ContactsScreen = () => {
       {'email': '', 'category': '', 'name': 'NSW State Emergency Service', 'link': 'https://www.ses.nsw.gov.au/about-us/contact-us/', 'number': '132500', 'keywords': ['Search and rescue', 'Damage', 'Natural disasters', 'Flood', 'Bushfire', 'Emergency', ]},
       {'email': 'info@benestar.com', 'category': '', 'name': 'EAP - Benestar', 'link': 'https://www.benestar.com/contact-us ', 'number': '1300 360 364', 'keywords': ['Incident management', 'Workplace safety/wellness']},
   ]
+
 
   return (
     <View>

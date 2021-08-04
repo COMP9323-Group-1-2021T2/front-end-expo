@@ -32,7 +32,7 @@ export const HomeScreen = ({ navigation }) => {
                       </View>
                     </View>
                     <View style={[isMobile ? {display:'none', marginBottom:'5%'} : {height:'330px'}, {width:'fit-content', flex:"1", marginLeft:'2%'}]}>
-                      <iframe style={{width:'100%', height:'330px'}} src="https://www.youtube.com/embed/outPlDO8q_o" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                      <iframe style={{width:'100%', height:'330px'}} src="https://www.youtube.com/embed/outPlDO8q_o" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
                     </View>
                   </View>
 

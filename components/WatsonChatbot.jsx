@@ -6,6 +6,14 @@ export const WatsonChatbot = () => {
   useEffect(() => {
 
       var styles = `
+        .WACLauncher__ButtonContainer {
+          display: none !important;
+        }
+
+        body.show-watson .WACLauncher__ButtonContainer {
+          display: block !important;
+        }
+
         .WAC__homeScreenOriginal-starter-text { 
             color: black !important
         }
