@@ -7,9 +7,9 @@ export const Article = ({ article, onEdit, isEditable }) => (
     <Card.Cover source={{ uri: article.image }} />
     <Card.Content style={styles.content}>
       <Title style={styles.title}>{article.title}</Title>
-      <Paragraph numberOfLines={3}>{article.description}</Paragraph>
+      <Paragraph numberOfLines={4}>{article.description}</Paragraph>
     </Card.Content>
-    <Card.Actions>
+    <Card.Actions style={styles.actions}>
       <Button
         onPress={() => {
           window.open(article.url, "_blank");
@@ -35,5 +35,13 @@ const styles = StyleSheet.create({
   },
   content: {
     flexGrow: 1,
+    paddingTop: 20,
+    paddingLeft: 20,
+    paddingRight: 20,
+  },
+  actions: {
+    paddingLeft: 10,
+    paddingRight: 10,
+    paddingBottom: 20,
   },
 });
