@@ -34,7 +34,7 @@ export const NotificationContainer = ({ children }) => {
   return (
     <NotificationContext.Provider value={contextValue}>
       {children}
-      <Snackbar visible={visible} onDismiss={handleOnDismiss} duration={3000}>
+      <Snackbar visible={visible} onDismiss={handleOnDismiss} duration={4000}>
         {message}
       </Snackbar>
     </NotificationContext.Provider>

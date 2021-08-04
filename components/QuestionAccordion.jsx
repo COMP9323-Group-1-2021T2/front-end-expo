@@ -1,5 +1,12 @@
 import React, { useState } from "react";
-import { List, Title, Button, Modal, TextInput, Paragraph } from "react-native-paper";
+import {
+  List,
+  Chip,
+  Button,
+  TextInput,
+  Paragraph,
+  IconButton,
+} from "react-native-paper";
 import { StyleSheet, View } from "react-native";
 
 export const QuestionAccordion = ({ question, isAdmin, onAnswerSave }) => {
@@ -14,8 +21,9 @@ export const QuestionAccordion = ({ question, isAdmin, onAnswerSave }) => {
 
   if (isAdmin) {
     additionalProps = {
-      left: (props) => withCheckIcon ? <List.Icon {...props} icon="check" /> : null
-    }
+      left: (props) =>
+        withCheckIcon ? <List.Icon {...props} icon="check" /> : null,
+    };
   }
 
   return (
@@ -40,6 +48,10 @@ export const QuestionAccordion = ({ question, isAdmin, onAnswerSave }) => {
         </View>
       ) : (
         <View style={styles.answer}>
+          <View style={{display: "flex", flexDirection: "row", alignItems: "center"}}>
+            <IconButton icon="check" color={"#00A550"} size={20} />
+            <Paragraph style={{ color: "#00A550" }}>Answered by Verified Expert</Paragraph>
+          </View>
           <Paragraph>{question.answer}</Paragraph>
         </View>
       )}

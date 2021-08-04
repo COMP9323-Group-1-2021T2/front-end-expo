@@ -37,7 +37,7 @@ export const QuestionsScreen = ({ navigation }) => {
     try {
       await createQuestion(question);
       setIsModalVisible(false);
-      setNotification("Successfully submitted your question");
+      setNotification("Your question has been submitted for answering and approval from a verified expert.");
     } catch (e) {
       setNotification("Failed to submitted your question");
     }
