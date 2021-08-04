@@ -11,6 +11,10 @@ export const ArticleModal = ({ article, onSave, onDelete, onCancel }) => {
   const [image, setImage] = useState("");
   const [description, setDescription] = useState("");
 
+  const [isUrlError, setIsUrlError] = useState(false);
+  const [isImageUrlError, setIsImageUrlError] = useState(false);
+  const urlMatcher = /(https?:\/\/)?([\w\-])+\.{1}([a-zA-Z]{2,63})([\/\w-]*)*\/?\??([^#\n\r]*)?#?([^\n\r]*)/g
+
   let styles = largeStyles;
   if (isMobileScreen()) {
     styles = { ...styles, ...mobileStyles };
@@ -33,7 +37,36 @@ export const ArticleModal = ({ article, onSave, onDelete, onCancel }) => {
     }
   }, [article]);
 
+  useEffect(() => {
+    if (url === "") {
+      return;
+    }
+
+
+    if (url.match(urlMatcher)) {
+      setIsUrlError(false);
+    } else {
+      setIsUrlError(true);
+    }
+  }, [url]);
+
+  useEffect(() => {
+    if (image === "") {
+      return;
+    }
+
+    if (image.match(urlMatcher)) {
+      setIsImageUrlError(false);
+    } else {
+      setIsImageUrlError(true);
+    }
+  }, [image]);
+
   const handleOnSave = () => {
+    if (isUrlError || isImageUrlError) {
+      return;
+    }
+
     onSave({
       title,
       url,
@@ -59,6 +92,7 @@ export const ArticleModal = ({ article, onSave, onDelete, onCancel }) => {
           value={url}
           style={styles.input}
           onChangeText={(t) => setUrl(t)}
+          error={isUrlError}
         />
         <TextInput
           label="Image URL"
@@ -66,6 +100,7 @@ export const ArticleModal = ({ article, onSave, onDelete, onCancel }) => {
           value={image}
           style={styles.input}
           onChangeText={(t) => setImage(t)}
+          error={isImageUrlError}
         />
         <TextInput
           label="Description"
