@@ -43,17 +43,17 @@ export const ExpertsScreen = () => {
                                             <Title>{expert.name}</Title>
                                             {expert.number.length > 0 ? 
                                                 <>
-                                                    <View style={{display: 'flex', flexDirection: 'row', width:'90%', justifyContent:'end', alignItems:'baseline'}}>
+                                                    <View style={styles.cardText}>
                                                         <Icon name="phone" size={20} color="#d64204" />
                                                         <Paragraph style={{paddingTop:'1vh', paddingBottom:'1vh', marginLeft:'5%'}} numberOfLines={8}>{expert.number}</Paragraph>
                                                     </View>
 
-                                                    <View style={{display: 'flex', flexDirection: 'row', width:'90%', justifyContent:'end', alignItems:'baseline'}}>
+                                                    <View style={styles.cardText}>
                                                         <Icon name="globe" size={20} color="#d64204" />
                                                         <Button onPress = {() => {window.open(expert.link, "_blank")}} style={{margin:'0px'}}>Linkedin</Button>
                                                     </View>
                                                     {expert.email.length > 0 ? 
-                                                        <View style={{display: 'flex', flexDirection: 'row', width:'90%', justifyContent:'end', alignItems:'baseline'}}>
+                                                        <View style={styles.cardText}>
                                                             <Icon name="envelope-o" size={20} color="#d64204" />
                                                             <Text style={{display: "flex", flexWrap: "wrap", marginLeft:'3%'}}> {expert.email} </Text>
                                                         </View>
@@ -104,6 +104,14 @@ const styles = StyleSheet.create({
 
     flexColumn: {
         flexDirection:'column'
+    },
+
+    cardText: {
+        display: 'flex', 
+        flexDirection: 'row', 
+        width:'90%', 
+        justifyContent:'end', 
+        alignItems:'baseline'
     }
 
 });

@@ -19,24 +19,24 @@ export const HomeScreen = ({ navigation }) => {
                   <View style={[isMobile ? {flexDirection:'column'} : {flexDirection:'row'}, {display:'flex'}]}>
 
                     <View style={[isMobile ? styles.mobileHomeCard: {height:'330px', padding:'1%'}, styles.homeCard]}>
-                      <Text style={[isMobile ? {fontSize: '5vw'} : { fontSize: '2vw'}, {color:'rgb(214, 66, 4)', fontWeight:'500'}]}> Your Wellbeing {'\n'} Starts Here</Text>
+                      <Text style={[isMobile ? {fontSize: '5vw'} : { fontSize: '2vw'}, styles.wellbeingText]}> Your Wellbeing {'\n'} Starts Here</Text>
                       <br/>
                       <Text style={{textAlign:'left'}}> myWellbeing connects you to resources, support, and service providers, to support your OH&S, mental, and physical health. You can start by exploring the resources below or use our chatbot to connect with services.</Text>
                     </View>
 
-                    <View style={[isMobile ? styles.mobileHomeCard: {height:'330px', padding:'1%'}, {width:'fit-content', backgroundColor:'#d82138', flex:"1"}]}>
+                    <View style={[isMobile ? styles.mobileHomeCard: {height:'330px', padding:'1%'}, styles.emergencyView]}>
                       <Text style={[isMobile ? {fontSize: '3vw'} : { fontSize: '1vw'}, {color:'white', fontWeight:'500'}, {width:"50%", borderBottom:'2px solid white'}]}> Emergency </Text>
-                      <View style={{display:'flex', flexDirection:'column', justifyContent:'center', alignItems:'center', marginTop:'3%', height:'80%'}}>
+                      <View style={styles.coronaView}>
                         <Text style={[isMobile ? {fontSize: '4vw'} : { fontSize: '1.3vw'}, {color:'white', fontWeight:'500', marginBottom:'5%'}]}> Coronavirus disease (COVID-19) pandemic</Text>
-                        <Button style={{backgroundColor:'white', color: '#d82138'}}> All info here </Button>
+                        <Button style={{backgroundColor:'white', color: '#d82138'}} onPress={() => {window.open("https://www.covid-19.unsw.edu.au/")}}> All info here </Button>
                       </View>
                     </View>
-                    <View style={[isMobile ? {display:'none', marginBottom:'5%'} : {height:'330px'}, {width:'fit-content', flex:"1", marginLeft:'2%'}]}>
+                    <View style={[isMobile ? {display:'none', marginBottom:'5%'} : {height:'330px'}, styles.videoView]}>
                       <iframe style={{width:'100%', height:'330px'}} src="https://www.youtube.com/embed/outPlDO8q_o" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
                     </View>
                   </View>
 
-                  <Text style={[isMobile ? {fontSize: '5vw', marginTop:'5%', marginBottom:'5%'} : { fontSize: '2vw', marginTop:'3%', marginBottom:'5%'}, {color:'rgb(214, 66, 4)', fontWeight:'500', textAlign:'center'}]}> Start Exploring Resources </Text>
+                  <Text style={[isMobile ? styles.exploringResourcesMobile : { fontSize: '2vw', marginTop:'3%', marginBottom:'5%'}, {color:'rgb(214, 66, 4)', fontWeight:'500', textAlign:'center'}]}> Start Exploring Resources </Text>
 
                   <View style={[isMobile ? {flexDirection:'column'} : {flexDirection:'row'}, {display:'flex'}]}>
 
@@ -71,7 +71,7 @@ export const HomeScreen = ({ navigation }) => {
                     </View>
 
                     <View style={[isMobile ? styles.mobileHomeCard: {height:'330px',  padding:'1%'}, styles.homeCard]}>
-                      <Text style={[isMobile ? {fontSize: '3vw'} : { fontSize: '1.5vw'}, {color:'rgb(214, 66, 4)', fontWeight:'500', flex:'1'}]}> Get Help Now </Text>
+                      <Text style={[isMobile ? {fontSize: '3vw'} : { fontSize: '1.5vw'}, styles.getHelpText]}> Get Help Now </Text>
                       <br/>
                       <Text style={{textAlign:'left', height:'fit-content', flex:'2'}}> In an emergency, call 000 immediately. If the situation is urgent and you’re concerned you, or someone else, is in immediate danger do not leave the person alone, unless you are concerned for your own safety.
                       </Text>
@@ -109,6 +109,18 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     
   },
+
+  getHelpText: {
+
+    color:'rgb(214, 66, 4)', fontWeight:'500', flex:'1'
+  },
+
+  emergencyView: {
+    width:'fit-content', backgroundColor:'#d82138', flex:"1"
+  },
+  videoView: {
+    width:'fit-content', flex:"1", marginLeft:'2%'
+  },
   mobileHomeCard: {
     display:'flex',
     flexDirection:'column',
@@ -117,12 +129,32 @@ const styles = StyleSheet.create({
     padding:"5%",
   },
 
+  exploringResourcesMobile: {
+    fontSize: '5vw', 
+    marginTop:'5%', 
+    marginBottom:'5%',
+  },
+
+  coronaView: {
+    display:'flex', 
+    flexDirection:'column', 
+    justifyContent:'center', 
+    alignItems:'center', 
+    marginTop:'3%', 
+    height:'80%'
+  },
+
   homeCard: {
     width:'fit-content', 
     backgroundColor:'white', 
     flex:"1", 
     marginRight:'2%', 
     borderRadius:'10px'
+  },
+
+  wellbeingText: {
+    color:'rgb(214, 66, 4)', 
+    fontWeight:'500',
   }
 
 });

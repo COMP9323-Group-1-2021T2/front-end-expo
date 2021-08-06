@@ -58,7 +58,7 @@ export const ContactsScreen = () => {
                 {contacts.map((contact, i) => 
                     (
                         <> 
-                            {contact.category.length > 0 ? <Text style={{padding:'1vw', fontSize: '18px', fontWeight:'bold'}}> {contact.category} </Text> : ''}
+                            {contact.category.length > 0 ? <Text style={styles.contactCategory}> {contact.category} </Text> : ''}
                             <Card style={{maxWidth: '600px', width:'100%', marginBottom:'2%'}}>
                                 <Card.Content>
                                     <View style={[styles.cardContent, screenWidth, windowWidth < 600 ? styles.flexColumn : styles.flexRow]}>
@@ -69,17 +69,17 @@ export const ContactsScreen = () => {
                                             <Title>{contact.name}</Title>
                                             {contact.number.length > 0 ? 
                                                 <>
-                                                    <View style={{display: 'flex', flexDirection: 'row', width:'90%', justifyContent:'end', alignItems:'baseline'}}>
+                                                    <View style={styles.contactText}>
                                                         <Icon name="phone" size={20} color="#d64204" />
                                                         <Paragraph style={{paddingTop:'1vh', paddingBottom:'1vh', marginLeft:'5%'}} numberOfLines={8}>{contact.number}</Paragraph>
                                                     </View>
 
-                                                    <View style={{display: 'flex', flexDirection: 'row', width:'90%', justifyContent:'end', alignItems:'baseline'}}>
+                                                    <View style={styles.contactText}>
                                                         <Icon name="globe" size={20} color="#d64204" />
                                                         <Button onPress = {() => {window.open(contact.link, "_blank")}} style={{margin:'0px'}}>Website</Button>
                                                     </View>
                                                     {contact.email.length > 0 ? 
-                                                        <View style={{display: 'flex', flexDirection: 'row', width:'90%', justifyContent:'end', alignItems:'baseline'}}>
+                                                        <View style={styles.contactText}>
                                                             <Icon name="envelope-o" size={20} color="#d64204" />
                                                             <Text style={{display: "flex", flexWrap: "wrap", marginLeft:'3%'}}> {contact.email} </Text>
                                                         </View>
@@ -132,6 +132,20 @@ const styles = StyleSheet.create({
 
     flexColumn: {
         flexDirection:'column'
-    }
+    },
+
+    contactCategory: {
+        padding:'1vw', 
+        fontSize: '18px', 
+        fontWeight:'bold'
+    },
+
+    contactText: {
+        display: 'flex', 
+        flexDirection: 'row', 
+        width:'90%', 
+        justifyContent:'end', 
+        alignItems:'baseline'
+    },
 
 });
