@@ -83,7 +83,7 @@ export const NewNavbar = () => {
 
         <Image
           source={require("../assets/myWellbeing.PNG")}
-          style={{ width: 50, height: "80%" }}
+          style={{ width: 50 }}
           resizeMode="contain"
         />
         <View style={{display:'flex', flexDirection:'column'}}>
