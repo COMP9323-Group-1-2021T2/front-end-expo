@@ -214,6 +214,7 @@ const largeStyles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     backgroundColor: "white",
+    alignItems: "center",
   },
   loginContainer: {
     display: "flex",
@@ -255,9 +256,11 @@ const largeStyles = StyleSheet.create({
     cursor: "pointer",
   },
   getHelpContainer: {
-    padding: 10,
+    paddingHorizontal: 30,
     backgroundColor: theme.colors.primary,
-    width: "200",
+    height: "100%",
+    display: "flex",
+    justifyContent: "center",
   },
   getHelpText: {
     color: "white",
