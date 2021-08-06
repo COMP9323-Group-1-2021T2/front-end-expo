@@ -3,13 +3,15 @@ import {
   getQuestions as apiGetQuestions,
   createQuestion as apiCreateQuestion,
   answerQuestion as apiAnswerQuestion,
+  deleteQuestion as apiDeleteQuestion,
 } from "../api";
 import { UserContext } from "./UserContext";
 
 export const QuestionsContext = React.createContext({
   questions: [],
   createQuestion: () => {},
-  answerQuestion: (questionId, answer) => {}
+  answerQuestion: (questionId, answer) => {},
+  deleteQuestion: (questionId) => {}
 });
 
 export const QuestionsContainer = ({ children }) => {
@@ -29,6 +31,16 @@ export const QuestionsContainer = ({ children }) => {
 
   const answerQuestion = async(questionId, answer) => {
     await apiAnswerQuestion(accessToken, questionId, answer);
+
+    // refetch questions
+    setQuestions(await apiGetQuestions(accessToken));
+
+    return;
+  };
+
+  const deleteQuestion = async(questionId) => {
+    await apiDeleteQuestion(accessToken, questionId);
+
     // refetch questions
     setQuestions(await apiGetQuestions(accessToken));
 
@@ -39,6 +51,7 @@ export const QuestionsContainer = ({ children }) => {
     questions,
     createQuestion,
     answerQuestion,
+    deleteQuestion,
   };
 
   return (

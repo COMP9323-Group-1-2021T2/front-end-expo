@@ -279,3 +279,21 @@ export const answerQuestion = async (accessToken, questionId, answer) => {
 
   return jsonData.data;
 };
+
+export const deleteQuestion = async (accessToken, questionId) => {
+  const res = await fetch(`${baseUrl}/questions/${questionId}`, {
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${accessToken}`,
+    },
+    method: "DELETE",
+  });
+
+  const jsonData = await res.json();
+
+  if (!res.ok) {
+    throw new Error(`Failed to delete a question`);
+  }
+
+  return jsonData.data;
+};
