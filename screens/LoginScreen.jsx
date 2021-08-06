@@ -48,11 +48,10 @@ export const LoginScreen = () => {
           <Title style={styles.title} onPress={() => {}}>
             myWellbeing
           </Title>
-          <Text>@UNSW Sydney</Text>
+          <Text style={styles.subtitle}>@UNSW Sydney</Text>
         </View>
       </View>
 
-      <Title style={styles.loginText}>Experts Login</Title>
       <View style={styles.formContainer}>
         <TextInput
           label="Email"
@@ -98,15 +97,22 @@ const mobileStyles = StyleSheet.create({
 });
 
 const largeStyles = StyleSheet.create({
+  title: {
+    fontSize: 40,
+  },
+  subtitle: {
+    fontSize: 20,
+    alignSelf: "flex-end",
+  },
   logoContainer: {
     display: "flex",
     flexDirection: "row",
     alignItems: "center",
-    marginBottom: 20,
+    marginBottom: 40,
   },
   logo: {
-    width: 50,
-    height: 50,
+    width: 80,
+    height: 80,
     marginRight: 20,
   },
   container: {
