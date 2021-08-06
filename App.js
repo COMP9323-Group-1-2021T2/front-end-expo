@@ -14,6 +14,7 @@ const config = {
     Contacts: "contacts",
     Login: "login",
     Questions: "questions",
+    Experts: "experts",
     Info: ":categoryId",
     Articles: ":categoryId/articles",
     Videos: ":categoryId/videos",

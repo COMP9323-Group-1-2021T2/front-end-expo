@@ -256,7 +256,7 @@ const largeStyles = StyleSheet.create({
     cursor: "pointer",
   },
   getHelpContainer: {
-    paddingHorizontal: 30,
+    paddingHorizontal: 20,
     backgroundColor: theme.colors.primary,
     height: "100%",
     display: "flex",
