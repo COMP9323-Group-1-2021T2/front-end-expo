@@ -83,7 +83,7 @@ export const NewNavbar = () => {
 
         <Image
           source={require("../assets/myWellbeing.PNG")}
-          style={{ width: 50, height: "80%" }}
+          style={{ width: 50 }}
           resizeMode="contain"
         />
         <View style={{display:'flex', flexDirection:'column'}}>
@@ -214,6 +214,7 @@ const largeStyles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     backgroundColor: "white",
+    alignItems: "center",
   },
   loginContainer: {
     display: "flex",
@@ -255,9 +256,11 @@ const largeStyles = StyleSheet.create({
     cursor: "pointer",
   },
   getHelpContainer: {
-    padding: 10,
+    paddingHorizontal: 20,
     backgroundColor: theme.colors.primary,
-    width: "200",
+    height: "100%",
+    display: "flex",
+    justifyContent: "center",
   },
   getHelpText: {
     color: "white",

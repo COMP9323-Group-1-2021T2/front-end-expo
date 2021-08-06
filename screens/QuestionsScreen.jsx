@@ -10,9 +10,10 @@ import { QuestionAccordion } from "../components/QuestionAccordion";
 import ScrollBox from "react-responsive-scrollbox";
 import { isMobileScreen } from "../core/screen";
 
-
 export const QuestionsScreen = ({ navigation }) => {
-  const { questions, createQuestion, answerQuestion } = useContext(QuestionsContext);
+  const { questions, createQuestion, answerQuestion, deleteQuestion } = useContext(
+    QuestionsContext
+  );
   const { setNotification } = useContext(NotificationContext);
   const { isLoggedIn } = useContext(UserContext);
 
@@ -37,7 +38,9 @@ export const QuestionsScreen = ({ navigation }) => {
     try {
       await createQuestion(question);
       setIsModalVisible(false);
-      setNotification("Your question has been submitted for answering and approval from a verified expert.");
+      setNotification(
+        "Your question has been submitted for answering and approval from a verified expert."
+      );
     } catch (e) {
       setNotification("Failed to submitted your question");
     }
@@ -52,38 +55,53 @@ export const QuestionsScreen = ({ navigation }) => {
     }
   };
 
+  const handleOnDelete = async (questionId) => {
+    try {
+      await deleteQuestion(questionId);
+      setNotification("Successfully deleted the question");
+    } catch (e) {
+      setNotification("Failed to delete the question");
+    }
+  };
+
   return (
     <View>
       <NewNavbar />
-      <ScrollBox style={{height:'80vh', width:'80vw', margin:'auto'}}> 
-          <View style={{paddingBottom:'20vh'}}>
-            <View style={styles.contentContainer}>
-              <View style={styles.top}>
-                <Title>Questions</Title>
-                {!isLoggedIn && (
-                  <Button mode="contained" onPress={handleAskAQuestionOnPress}>
-                    Ask a Question
-                  </Button>
-                )}
-              </View>
-
-              <View style={styles.listContainer}>
-                <List.Section>
-                  {questions.map((q) => (
-                    <QuestionAccordion key={q.id} question={q} isAdmin={isLoggedIn} onAnswerSave={handleOnAnswerSave} />
-                  ))}
-                </List.Section>
-              </View>
-              <Modal
-                style={styles.modal}
-                visible={isModalVisible}
-                onDismiss={handleOnModalDismiss}
-              >
-                <AskQuestionModal onSubmit={handleOnModalSubmit} />
-              </Modal>
+      <ScrollBox style={{ height: "80vh", width: "80vw", margin: "auto" }}>
+        <View style={{ paddingBottom: "20vh" }}>
+          <View style={styles.contentContainer}>
+            <View style={styles.top}>
+              <Title>Questions</Title>
+              {!isLoggedIn && (
+                <Button mode="contained" onPress={handleAskAQuestionOnPress}>
+                  Ask a Question
+                </Button>
+              )}
             </View>
+
+            <View style={styles.listContainer}>
+              <List.Section>
+                {questions.map((q) => (
+                  <QuestionAccordion
+                    key={q.id}
+                    question={q}
+                    isAdmin={isLoggedIn}
+                    onAnswerSave={handleOnAnswerSave}
+                    onDelete={handleOnDelete}
+                  />
+                ))}
+              </List.Section>
+            </View>
+            <Modal
+              style={styles.modal}
+              visible={isModalVisible}
+              onDismiss={handleOnModalDismiss}
+            >
+              <AskQuestionModal onSubmit={handleOnModalSubmit} />
+            </Modal>
           </View>
-        </ScrollBox>
+        </View>
+      </ScrollBox>
     </View>
   );
 };

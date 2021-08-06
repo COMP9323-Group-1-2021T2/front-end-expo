@@ -6,30 +6,50 @@ import {
   TextInput,
   Paragraph,
   IconButton,
+  Title,
 } from "react-native-paper";
 import { StyleSheet, View } from "react-native";
+import Icon from "react-native-vector-icons/FontAwesome";
 
-export const QuestionAccordion = ({ question, isAdmin, onAnswerSave }) => {
+export const QuestionAccordion = ({
+  question,
+  isAdmin,
+  onAnswerSave,
+  onDelete,
+}) => {
   const [answer, setAnswer] = useState(question.answer);
-  const withCheckIcon = question.answer && isAdmin;
+  const isAnswered = question.answer && isAdmin;
 
   const handleOnAnswerSave = () => {
     onAnswerSave(question.id, answer);
   };
 
+  const handleOnDelete = () => {
+    if (window.confirm("Are you sure you want to delete this question?")) {
+      onDelete(question.id);
+    }
+  };
+
   let additionalProps = {};
 
-  if (isAdmin) {
-    additionalProps = {
-      left: (props) =>
-        withCheckIcon ? <List.Icon {...props} icon="check" /> : null,
-    };
-  }
+  // if (isAdmin) {
+  //   additionalProps = {
+  //     left: (props) =>
+  //       withCheckIcon ? <List.Icon {...props} icon="check" /> : null,
+  //   };
+  // }
 
   return (
     <List.Accordion
-      style={styles.accordion}
-      title={question.question}
+      style={[styles.accordion, isAnswered ? styles.adminAnswered : {}]}
+      title={
+        <View style={styles.title}>
+          {question.answer && (
+            <Icon style={styles.checkIcon} name="check-circle" size={25} />
+          )}
+          <Title>{question.question}</Title>
+        </View>
+      }
       {...additionalProps}
     >
       {isAdmin ? (
@@ -40,17 +60,30 @@ export const QuestionAccordion = ({ question, isAdmin, onAnswerSave }) => {
             value={answer}
             style={styles.adminInput}
             onChangeText={(a) => setAnswer(a)}
-            numberOfLines={4}
+            numberOfLines={3}
+            multiline
           />
-          <Button mode="text" onPress={handleOnAnswerSave}>
-            Save
-          </Button>
+          <View style={styles.buttons}>
+            <Button mode="text" onPress={handleOnAnswerSave}>
+              Save
+            </Button>
+            <Button mode="text" onPress={handleOnDelete}>
+              Delete
+            </Button>
+          </View>
         </View>
       ) : (
         <View style={styles.answer}>
-          <View style={{display: "flex", flexDirection: "row", alignItems: "center"}}>
-            <IconButton icon="check" color={"#00A550"} size={20} />
-            <Paragraph style={{ color: "#00A550" }}>Answered by Verified Expert</Paragraph>
+          <View
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+            }}
+          >
+            <Paragraph style={{ color: "#00A550" }}>
+              Answered by Verified Expert
+            </Paragraph>
           </View>
           <Paragraph>{question.answer}</Paragraph>
         </View>
@@ -60,6 +93,15 @@ export const QuestionAccordion = ({ question, isAdmin, onAnswerSave }) => {
 };
 
 const styles = StyleSheet.create({
+  title: {
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  checkIcon: {
+    color: "#00A550",
+    marginRight: 20,
+  },
   accordion: {
     backgroundColor: "white",
     marginTop: 20,
@@ -67,15 +109,18 @@ const styles = StyleSheet.create({
   adminItemContainer: {
     paddingVertical: 20,
     backgroundColor: "white",
-    display: "flex",
-    flexDirection: "row",
-    alignItems: "center",
   },
   adminInput: {
     backgroundColor: "white",
-    flexGrow: 1,
+    paddingHorizontal: 10,
+    marginBottom: 20,
   },
   answer: {
     padding: 10,
+  },
+  buttons: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "flex-end",
   },
 });
