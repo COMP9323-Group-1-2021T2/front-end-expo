@@ -19,6 +19,7 @@ export const getCategories = async () => {
 }
 
 export const getCategoryInfo = async (categoryId) => {
+
   const res = await fetch(`${baseUrl}/${categoryId}`, {
     headers: {
       "Content-Type": "application/json",

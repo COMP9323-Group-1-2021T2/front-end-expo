@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { View, StyleSheet, Image } from "react-native";
+import { View, StyleSheet, Image, Text } from "react-native";
 import { Headline, Menu, Button, Title, IconButton } from "react-native-paper";
 import { theme } from "../core/theme";
 import { CategoriesContext } from "../contexts/CategoriesContext";
@@ -56,6 +56,11 @@ export const NewNavbar = () => {
     navigation.navigate("Questions");
   };
 
+  const handleExpertsPress = () => {
+    setParentSelected("");
+    navigation.navigate("Experts");
+  };
+
   let styles = largeStyles;
 
   const isMobile = isMobileScreen();
@@ -81,9 +86,12 @@ export const NewNavbar = () => {
           style={{ width: 50, height: "80%" }}
           resizeMode="contain"
         />
-        <Title style={styles.title} onPress={handleOnTitlePress}>
-          myWellbeing
-        </Title>
+        <View style={{display:'flex', flexDirection:'column'}}>
+          <Title style={styles.title} onPress={handleOnTitlePress}>
+            myWellbeing  
+          </Title>
+          <Text style={[isMobile ? { marginBottom:'5%', textAlign: 'end' } : {textAlign:'end'}]}> @UNSW Sydney </Text>
+        </View>
       </View>
       <View style={[styles.menus, isOpen ? {} : styles.menusHiddenMobile]}>
         {parentIds.map((pId) => {
@@ -114,6 +122,9 @@ export const NewNavbar = () => {
           );
         })}
         <View style={styles.buttonsInMenu}>
+          <Button mode="text" onPress={handleExpertsPress}>
+            Experts
+          </Button>
           <Button mode="text" onPress={handleQuestionsPress}>
             Questions
           </Button>
@@ -132,6 +143,9 @@ export const NewNavbar = () => {
         </View>
       </View>
       <View style={[isMobile ? { display: "none" } : styles.loginContainer]}>
+        <Button mode="text" onPress={handleExpertsPress}>
+          Experts
+        </Button>
         <Button mode="text" onPress={handleQuestionsPress}>
           Questions
         </Button>
@@ -181,7 +195,8 @@ export const NewNavbar = () => {
               " 000 " +
               "as soon as possible."
             }
-          ></Menu.Item>
+          >
+          </Menu.Item>
           <Menu.Item
             style={{ marginTop: "10%" }}
             onPress={handleContacts}
