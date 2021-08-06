@@ -9,9 +9,8 @@ import { isMobileScreen } from "../core/screen";
 
 export const InfoScreen = ({ navigation, route }) => {
   const { categoryId } = route.params;
-  const { info, setSelectedCategoryId, articles, videos } = useContext(
-    CategoriesContext
-  );
+  const { info, setSelectedCategoryId, articles, videos } =
+    useContext(CategoriesContext);
   const [shownArticles, setShownArticles] = useState([]);
   const [image, setImage] = useState("");
 
@@ -36,7 +35,7 @@ export const InfoScreen = ({ navigation, route }) => {
   useEffect(() => {
     if (videos.length !== 0) {
       const firstVideo = videos[0];
-      setImage(firstVideo.image)
+      setImage(firstVideo.image);
     }
   }, [videos]);
 
@@ -47,13 +46,15 @@ export const InfoScreen = ({ navigation, route }) => {
         <View style={styles.container}>
           <View style={styles.top}>
             <View style={styles.left}>
-              <Title style={styles.title}>General Information and Summary</Title>
+              <Title style={styles.title}>
+                General Information and Summary
+              </Title>
               <Subheading>{info}</Subheading>
             </View>
             <View style={styles.right}>
               <ImageBackground
                 source={{ uri: image }}
-                style={{width: '100%', height: '100%'}}
+                style={{ width: "100%", height: "100%" }}
               />
             </View>
           </View>
@@ -97,7 +98,7 @@ const largeStyles = StyleSheet.create({
     display: "flex",
     flexDirection: "row",
     justifyContent: "space-around",
-   flexWrap: "wrap",
+    flexWrap: "wrap",
     flexDirection: "row",
   },
   articleContainer: {
