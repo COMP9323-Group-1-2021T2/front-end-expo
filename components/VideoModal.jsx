@@ -13,6 +13,7 @@ export const VideoModal = ({ video, onSave, onDelete, onCancel }) => {
 
   const [isUrlError, setIsUrlError] = useState(false);
   const [isImageUrlError, setIsImageUrlError] = useState(false);
+  //basic regex to make sure URL is being entered by the user, and not some random text
   const urlMatcher = /(https?:\/\/)?([\w\-])+\.{1}([a-zA-Z]{2,63})([\/\w-]*)*\/?\??([^#\n\r]*)?#?([^\n\r]*)/g;
 
   let styles = largeStyles;

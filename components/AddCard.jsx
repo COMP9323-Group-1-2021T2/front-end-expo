@@ -3,6 +3,8 @@ import { Avatar, Button, Card, Title, Paragraph } from "react-native-paper";
 import { View, StyleSheet } from "react-native";
 import { theme } from "../core/theme";
 
+//This component is to allow the user to add/create a new card/resource, such as an article or video
+
 export const AddCard = () => (
   <Card style={styles.container}>
     <Card.Content style={styles.contentContainer}>

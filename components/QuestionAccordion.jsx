@@ -11,6 +11,10 @@ import {
 import { StyleSheet, View } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome";
 
+//This component is used to display the answer to a question, with the options "save" answer and "delete" answer,
+//which, of course, are only available to admins. If a question is answered, the green admin tick will appear beside it
+//to indicate this
+
 export const QuestionAccordion = ({
   question,
   isAdmin,

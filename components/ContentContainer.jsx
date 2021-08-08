@@ -6,6 +6,10 @@ import { theme } from "../core/theme";
 import { Video } from "./Video";
 import ScrollBox from "react-responsive-scrollbox";
 
+//This component is for the "info, articles, videos" bar or menu, which is consistent across every
+//category on the website. It allows for basic navigation across the different sections, and receives a parameter,
+//children, which contains all of the content that needs to be rendered
+
 export const ContentContainer = ({ children }) => {
   const route = useRoute();
   const navigation = useNavigation();

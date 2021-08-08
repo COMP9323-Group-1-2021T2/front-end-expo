@@ -2,6 +2,9 @@ import React from "react";
 import { Avatar, Button, Card, Title, Paragraph } from "react-native-paper";
 import { StyleSheet } from "react-native";
 
+//This component is for the article card. Instead of creating a new article card manually, we can
+//just use this component, passing arguments such as the article's uri, image etc.
+
 export const Article = ({ article, onEdit, isEditable }) => (
   <Card style={styles.container}>
     <Card.Cover source={{ uri: article.image }} />

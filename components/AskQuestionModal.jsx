@@ -3,6 +3,9 @@ import { View, StyleSheet } from "react-native";
 import { Title, TextInput, Button } from "react-native-paper";
 import { isMobileScreen } from "../core/screen";
 
+//This component is for the modal that allows users to ask a question by entering
+//the respective text in an input box
+
 export const AskQuestionModal = ({ onSubmit }) => {
   const [question, setQuestion] = useState("");
 

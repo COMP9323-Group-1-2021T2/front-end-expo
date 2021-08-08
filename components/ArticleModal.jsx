@@ -3,6 +3,9 @@ import { View, StyleSheet } from "react-native";
 import { Title, TextInput, Button } from "react-native-paper";
 import { isMobileScreen } from "../core/screen";
 
+//This component is for the article modal, which is basically a pop-menu allowing admin
+//users to edit or delete the article
+
 export const ArticleModal = ({ article, onSave, onDelete, onCancel }) => {
   const [modalTitle, setModalTitle] = useState("");
   const [buttonText, setButtonText] = useState("");

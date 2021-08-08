@@ -11,6 +11,9 @@ import { Dimensions } from "react-native";
 const screenWidth = Dimensions.get("screen").width;
 const windowWidth = Dimensions.get("window").width;
 
+//This component is for the navigation bar. It's layout is dependent on the device being used i.e. mobile
+//or desktop
+
 export const NewNavbar = () => {
   const navigation = useNavigation();
   const { categoriesMap } = useContext(CategoriesContext);
