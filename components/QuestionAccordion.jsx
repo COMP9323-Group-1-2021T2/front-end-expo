@@ -51,7 +51,7 @@ export const QuestionAccordion = ({
           {question.answer && (
             <Icon style={styles.checkIcon} name="check-circle" size={25} />
           )}
-          <Title>{question.question}</Title>
+          <Title style={{whiteSpace:'break-spaces'}}>{question.question}</Title>
         </View>
       }
       {...additionalProps}

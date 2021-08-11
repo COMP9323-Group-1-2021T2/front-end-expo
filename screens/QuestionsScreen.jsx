@@ -82,13 +82,15 @@ export const QuestionsScreen = ({ navigation }) => {
             <View style={styles.listContainer}>
               <List.Section>
                 {questions.map((q) => (
-                  <QuestionAccordion
-                    key={q.id}
-                    question={q}
-                    isAdmin={isLoggedIn}
-                    onAnswerSave={handleOnAnswerSave}
-                    onDelete={handleOnDelete}
-                  />
+                  <> 
+                    <QuestionAccordion
+                      key={q.id}
+                      question={q}
+                      isAdmin={isLoggedIn}
+                      onAnswerSave={handleOnAnswerSave}
+                      onDelete={handleOnDelete}
+                    />
+                  </>
                 ))}
               </List.Section>
             </View>
